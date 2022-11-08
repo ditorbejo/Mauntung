@@ -13,7 +13,7 @@ module.exports = {
       biru3: "#0303B5",
       biru4: "#8361DF",
       biru5: "#A875FF",
-      biru6: "#ffc82c",
+      biru6: "#D6DAFF",
       gray: "#676767",
     },
   },
