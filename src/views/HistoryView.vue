@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <main>Home</main>
+  <main>History</main>
 </template>
