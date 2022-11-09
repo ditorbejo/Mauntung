@@ -1,29 +1,24 @@
 <script setup>
-import { RouterLink } from "vue-router";
 import NavigationItem from "./NavigationItem.vue";
 
 const navItems = [
   {
-    to: "home",
-    isActive: true,
+    routeName: "home",
     icon: "home",
     label: "Beranda",
   },
   {
-    to: "history",
-    isActive: false,
+    routeName: "history",
     icon: "history",
     label: "Riwayat",
   },
   {
-    to: "report",
-    isActive: false,
+    routeName: "report",
     icon: "assignment",
     label: "Laporan",
   },
   {
-    to: "profile",
-    isActive: false,
+    routeName: "profile",
     icon: "person",
     label: "Profil",
   },
@@ -34,16 +29,10 @@ const navItems = [
   <nav
     class="flex justify-between px-6 py-2.5 fixed bottom-0 left-0 right-0 shadow-bottomBarShadow"
   >
-    <RouterLink
-      v-for="(navItem, index) in navItems"
-      :to="{ name: navItem.to }"
-      :key="'link-' + index"
-    >
-      <NavigationItem
-        :isActive="navItem.isActive"
-        :icon="navItem.icon"
-        :label="navItem.label"
-      />
-    </RouterLink>
+    <NavigationItem
+      v-for="navItem in navItems"
+      v-bind="navItem"
+      :key="navItem.routeName"
+    />
   </nav>
 </template>

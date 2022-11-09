@@ -1,22 +1,36 @@
 <script setup>
-const props = defineProps(["isActive", "icon", "label"]);
+import { ref, watch } from "vue";
+import { RouterLink, useRoute } from "vue-router";
+
+const props = defineProps(["icon", "label", "routeName"]);
+const isActive = ref(false);
+const route = useRoute();
+
+watch(
+  () => route.name,
+  (toName) => {
+    isActive.value = toName === props.routeName;
+  }
+);
 </script>
 
 <template>
-  <div
-    class="flex flex-col items-center justify-between w-12 h-12"
-    :class="[props.isActive ? 'text-biru2 font-semibold' : 'text-biru1']"
-  >
+  <RouterLink :to="{ name: props.routeName }">
     <div
-      class="py-1 w-full flex flex-col items-center rounded-full"
-      :class="[props.isActive ? 'bg-biru2' : '']"
+      class="flex flex-col items-center justify-between w-12 h-12"
+      :class="[isActive ? 'text-biru2 font-semibold' : 'text-biru1']"
     >
-      <span
-        class="material-symbols-rounded text-center"
-        :class="[props.isActive ? 'text-white' : '']"
-        >{{ props.icon }}</span
+      <div
+        class="py-1 w-full flex flex-col items-center rounded-full"
+        :class="[isActive ? 'bg-biru2' : '']"
       >
+        <span
+          class="material-symbols-rounded text-center"
+          :class="[isActive ? 'text-white' : '']"
+          >{{ props.icon }}</span
+        >
+      </div>
+      <span class="text-xs font-medium">{{ props.label }}</span>
     </div>
-    <span class="text-xs font-medium">{{ props.label }}</span>
-  </div>
+  </RouterLink>
 </template>
