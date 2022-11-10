@@ -19,7 +19,7 @@ const navItems = [
   },
   {
     routeName: "profile",
-    icon: "person",
+    icon: "account_circle",
     label: "Profil",
   },
 ];
