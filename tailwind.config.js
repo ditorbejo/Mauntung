@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       boxShadow: {
         bottomBarShadow: "0 -1px 2px  rgba(0, 0, 0, 0.25)",
+        topBarShadow: "0 1px 2px rgba(0,0,0,0.25)",
       },
       colors: {
         biru1: "#00004E",
