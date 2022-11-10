@@ -1,0 +1,15 @@
+<script setup>
+const props = defineProps(["icon", "title"]);
+</script>
+
+<template>
+  <header class="flex w-full py-2.5 px-4 gap-6 items-center sticky top-0 shadow-topBarShadow bg-white">
+    <button class="flex items-center bg-biru2 rounded-full py-1 px-1">
+      <span class="material-symbols-rounded text-white">
+        {{ props.icon }}
+      </span>
+    </button>
+
+    <h1 class="font-medium ">{{ props.title }}</h1>
+  </header>
+</template>
