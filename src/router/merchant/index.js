@@ -21,6 +21,11 @@ let routes = {
       name: "report",
       component: () => import("@/views/merchant/ReportView.vue"),
     },
+    {
+      path: "scanner",
+      name: "scanner",
+      component: () => import("@/views/merchant/ScannerView.vue"),
+    },
   ],
   meta: {
     role: "merchant",
