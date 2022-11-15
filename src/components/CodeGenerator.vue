@@ -7,7 +7,7 @@ const emit = defineEmits(["generateCodeClick"]);
 const basePoint = ref(0);
 const calculateBasePoint = (event) => {
   const nominal = event.target.value;
-  const calculated = nominal / 10000;
+  const calculated = parseInt(nominal / 10000);
   basePoint.value = calculated < 1 ? 0 : calculated;
 };
 </script>
