@@ -3,22 +3,22 @@ import NavigationItem from "./NavigationItem.vue";
 
 const navItems = [
   {
-    routeName: "home",
+    routeName: "merchant-home",
     icon: "home",
     label: "Beranda",
   },
   {
-    routeName: "history",
+    routeName: "merchant-history",
     icon: "history",
     label: "Riwayat",
   },
   {
-    routeName: "report",
+    routeName: "merchant-report",
     icon: "assignment",
     label: "Laporan",
   },
   {
-    routeName: "profile",
+    routeName: "merchant-profile",
     icon: "account_circle",
     label: "Profil",
   },
