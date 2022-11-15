@@ -18,6 +18,10 @@
     @apply bg-biru4;
   }
 
+  .btn-disabled{
+    @apply border border-lightGray text-lightGray;
+  }
+
   .btn-rounded {
     @apply rounded-lg;
   }

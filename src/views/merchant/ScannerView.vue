@@ -2,9 +2,6 @@
 import AppBar from "../../components/AppBar.vue";
 import QrcodeVue from "qrcode.vue";
 import GeneratedPoinCode from "../../components/GeneratedPoinCode.vue";
-import { useBasePointStore } from "@/stores/basePoint";
-const basePointStorage = useBasePointStore();
-
 </script>
 
 <template>
@@ -23,7 +20,7 @@ const basePointStorage = useBasePointStore();
         />
       </div>
       <GeneratedPoinCode class="w-full"
-        :base-poin="basePointStorage.basePoint"
+        :base-poin="10"
         :expired-at="new Date()"
         :ttl="90"
       ></GeneratedPoinCode>

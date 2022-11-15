@@ -1,14 +1,17 @@
 <script setup>
 import { ref } from "vue";
 import TextField from "./TextField.vue";
+import { useBasePointStore } from "@/stores/basePoint";
 
 const props = defineProps(["useNominal", "topLabel"]);
 const emit = defineEmits(["generateCodeClick"]);
 const basePoint = ref(0);
+const basePointStorage = useBasePointStore();
 const calculateBasePoint = (event) => {
   const nominal = event.target.value;
   const calculated = parseInt(nominal / 10000);
   basePoint.value = calculated < 1 ? 0 : calculated;
+  basePointStorage.setBasePoint(basePoint.value);
 };
 </script>
 
@@ -23,6 +26,7 @@ const calculateBasePoint = (event) => {
         type-input="number"
         name-input="nominal"
         id="nominal"
+        :value="0"
       ></TextField>
       <TextField
         label="Poin Dasar"
@@ -34,8 +38,10 @@ const calculateBasePoint = (event) => {
       ></TextField>
     </div>
     <button
-      @click="$emit('generateCodeClick')"
-      class="w-full mt-4 btn btn-primary btn-rounded btn-base"
+      @click="basePoint < 1 ? null : $emit('generateCodeClick')"
+      class="w-full mt-4 btn btn-rounded btn-base"
+      :class="[basePoint < 1 ? 'btn-disabled' : 'btn-primary']"
+      :disabled="basePoint < 1"
     >
       Buat Kode
     </button>
