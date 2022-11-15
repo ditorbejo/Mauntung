@@ -1,16 +1,30 @@
 <script setup>
-const props = defineProps(["label", "placeholder", "typeInput", "nameInput", "id"]);
+const props = defineProps([
+  "label",
+  "placeholder",
+  "typeInput",
+  "nameInput",
+  "id",
+  "value",
+  "disabled",
+]);
+
+const emit = defineEmits(['change']);
 </script>
 
 <template>
   <div class="flex flex-col gap-2">
     <label class="font-medium" for="">{{ props.label }}</label>
     <input
-      class="flex items-center px-3 py-3 border border-solid rounded-lg border-lightGray text-biru1"
+    @input="(event)=> $emit('change', event)"
+      class="flex items-center px-3 py-3 border border-solid rounded-lg border-lightGray"
       :type="props.typeInput"
       :name="props.nameInput"
       :placeholder="props.placeholder"
       :id="props.id"
+      :value="props.value"
+      :disabled="props.disabled"
+      :class="[props.disabled ? 'bg-lightGray text-gray' : 'text-biru1']"
     />
   </div>
 </template>

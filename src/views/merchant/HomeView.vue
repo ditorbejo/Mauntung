@@ -2,13 +2,24 @@
 import CodeGenerator from "@/components/CodeGenerator.vue";
 import InfoCard from "@/components/InfoCard.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
+import { useRoute, useRouter } from "vue-router";
+const router = useRouter();
+const navigateToGenerateCodeView = () => {
+  router.push({
+    name: "merchant-generate-code",
+  });
+};
 </script>
 
 <template>
   <main class="px-7.5 pb-20">
     <h1 class="mt-3 mb-5 font-semibold">Halo, Joomla</h1>
     <div class="flex flex-col gap-3">
-      <CodeGenerator :use-nominal="true" top-label="Nominal Transaksi" />
+      <CodeGenerator
+        @generate-code-click="navigateToGenerateCodeView"
+        :use-nominal="true"
+        top-label="Nominal Transaksi"
+      />
       <MembershipProgramCard
         :is-merchant="true"
         program-name="Laundree Membership"
