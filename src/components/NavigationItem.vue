@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
 const props = defineProps(["icon", "label", "routeName"]);
@@ -12,6 +12,10 @@ watch(
     isActive.value = toName === props.routeName;
   }
 );
+
+onMounted(() => {
+  isActive.value = route.name === props.routeName;
+});
 </script>
 
 <template>

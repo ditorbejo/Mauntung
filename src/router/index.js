@@ -4,7 +4,7 @@ import customerRoutes from "./customer";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...merchantRoutes, ...customerRoutes],
+  routes: [merchantRoutes, customerRoutes],
 });
 
 export default router;
