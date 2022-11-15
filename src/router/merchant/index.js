@@ -22,9 +22,9 @@ let routes = {
       component: () => import("@/views/merchant/ReportView.vue"),
     },
     {
-      path: "scanner",
-      name: "scanner",
-      component: () => import("@/views/merchant/ScannerView.vue"),
+      path: "generate-code",
+      name: "generate-code",
+      component: () => import("@/views/merchant/GeneratePointCodeView.vue"),
     },
   ],
   meta: {
