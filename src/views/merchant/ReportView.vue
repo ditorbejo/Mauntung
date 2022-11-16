@@ -1,8 +1,9 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import AppBar from "../../components/AppBar.vue";
 import ButtonGroup from "../../components/ButtonGroup.vue";
 import InfoCard from "../../components/InfoCard.vue";
+import PopupModal from "../../components/PopupModal.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 const active = ref("left");
@@ -21,6 +22,12 @@ const generalInfoCards = [
     info: "Nominal Transaksi",
     colorIcon: "bg-pastelBiru",
     width: "col-span-2",
+    details: {
+      title: "Nominal Transaksi",
+      bigValue: "Rp 500,000",
+      smallValue: "",
+      description: "",
+    },
   },
   {
     icon: "favorite",
@@ -28,6 +35,12 @@ const generalInfoCards = [
     info: "Poin Diberikan",
     colorIcon: "bg-pastelRed",
     width: "",
+    details: {
+      title: "Poin Diberikan",
+      bigValue: "10",
+      smallValue: "",
+      description: "",
+    },
   },
   {
     icon: "confirmation_number",
@@ -35,6 +48,12 @@ const generalInfoCards = [
     info: "Rewards Ditukarkan",
     colorIcon: "bg-pastelHijau",
     width: "",
+    details: {
+      title: "Rewards Ditukarkan",
+      bigValue: "10",
+      smallValue: "",
+      description: "",
+    },
   },
 ];
 
@@ -45,6 +64,12 @@ const loyaltyInfoCards = [
     info: "Redemption Rate",
     colorIcon: "bg-pastelBiru",
     width: "",
+    details: {
+      title: "Nominal Transaksi",
+      bigValue: "1500",
+      smallValue: "10000",
+      description: "",
+    },
   },
   {
     icon: "favorite",
@@ -52,6 +77,12 @@ const loyaltyInfoCards = [
     info: "Point Brakeage",
     colorIcon: "bg-pastelKuning",
     width: "",
+    details: {
+      title: "Nominal Transaksi",
+      bigValue: "500",
+      smallValue: "10000",
+      description: "",
+    },
   },
   {
     icon: "favorite",
@@ -59,6 +90,12 @@ const loyaltyInfoCards = [
     info: "Customer Retention Rate",
     colorIcon: "bg-pastelHijau",
     width: "",
+    details: {
+      title: "Customer Retention Rate",
+      bigValue: "2000",
+      smallValue: "10000",
+      description: "",
+    },
   },
   {
     icon: "favorite",
@@ -66,6 +103,12 @@ const loyaltyInfoCards = [
     info: "Participation Rate",
     colorIcon: "bg-lightGray",
     width: "",
+    details: {
+      title: "Participation Rate",
+      bigValue: "2000",
+      smallValue: "10000",
+      description: "",
+    },
   },
   {
     icon: "favorite",
@@ -73,13 +116,52 @@ const loyaltyInfoCards = [
     info: "Customer Churn Rate",
     colorIcon: "bg-pastelRed",
     width: "",
+    details: {
+      title: "Customer Churn Ratei",
+      bigValue: "500",
+      smallValue: "10000",
+      description: "",
+    },
   },
 ];
+
+const currentDetails = reactive({
+  details: {
+    title: "",
+    bigValue: "",
+    smallValue: "",
+    description: "",
+  },
+});
 </script>
 
 <template>
   <main>
     <AppBar icon="arrow_back" title="Laporan"></AppBar>
+    <PopupModal>
+      <template v-slot:header>
+        <div class="flex justify-between p-4 items-center">
+          <p class="font-semibold">{{ currentDetails.details.title }}</p>
+          <span
+            class="p-2 bg-biru2 text-white rounded-full material-symbols-rounded"
+            data-dismiss="modal"
+          >
+            close
+          </span>
+        </div>
+      </template>
+      <template v-slot:body>
+        <div class="flex flex-col px-4 gap-4.5 pb-7.5">
+          <p class="text-3xl font-semibold">
+            {{ currentDetails.details.bigValue }}
+            <span class="text-xs font-normal">{{
+              currentDetails.details.smallValue ? `/${currentDetails.details.smallValue}` : ""
+            }}</span>
+          </p>
+          <p class="font-medium">{{ currentDetails.details.description }}</p>
+        </div>
+      </template>
+    </PopupModal>
     <div class="flex flex-col gap-3 px-7.5">
       <div class="mt-5">
         <p class="font-medium mb-2">Periode</p>
@@ -101,6 +183,7 @@ const loyaltyInfoCards = [
           :color-icon="infoCard.colorIcon"
           :key="index"
           :class="[infoCard.width]"
+          @click="()=>currentDetails.details = infoCard.details"
         >
         </InfoCard>
       </div>
@@ -113,6 +196,7 @@ const loyaltyInfoCards = [
           :color-icon="infoCard.colorIcon"
           :key="index"
           :class="[infoCard.width]"
+          @click="()=>currentDetails.details = infoCard.details"
         >
         </InfoCard>
       </div>
