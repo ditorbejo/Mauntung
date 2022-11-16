@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^3.5.3",
     "pinia": "^2.0.23",
     "qrcode.vue": "^3.3.3",
     "vue": "^3.2.41",

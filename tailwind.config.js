@@ -29,6 +29,7 @@ module.exports = {
         pastelRed:"#FFB3B3",
         pastelHijau:"#C6FFB3",
         lightGray: "#CDCDCD",
+        pastelKuning: '#FFF7B3',
       },
     },
   },
