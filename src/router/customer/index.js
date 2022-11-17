@@ -1,3 +1,5 @@
+import membershipRoutes from "./membership";
+
 let routes = {
   path: "/customer",
   children: [
@@ -21,13 +23,14 @@ let routes = {
       name: "rewards",
       component: () => import("@/views/customer/RewardsView.vue"),
     },
+    membershipRoutes,
   ],
   meta: {
     role: "customer",
   },
 };
 
-routes.children = routes.children.map(({ path, name, component }) => {
+routes.children = routes.children.map(({ path, name, component, children }) => {
   return {
     path,
     name: "customer-" + name,
@@ -35,6 +38,7 @@ routes.children = routes.children.map(({ path, name, component }) => {
     meta: {
       role: "customer",
     },
+    children,
   };
 });
 
