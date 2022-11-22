@@ -68,7 +68,7 @@ const loyaltyInfoCards = [
       title: "Nominal Transaksi",
       bigValue: "1500",
       smallValue: "10000",
-      description: "",
+      description: "Point telah ditukarkan dengan reward",
     },
   },
   {
@@ -81,7 +81,7 @@ const loyaltyInfoCards = [
       title: "Nominal Transaksi",
       bigValue: "500",
       smallValue: "10000",
-      description: "",
+      description: "Point telah ditukarkan dengan reward",
     },
   },
   {
@@ -94,7 +94,7 @@ const loyaltyInfoCards = [
       title: "Customer Retention Rate",
       bigValue: "2000",
       smallValue: "10000",
-      description: "",
+      description: "Point telah ditukarkan dengan reward",
     },
   },
   {
@@ -107,7 +107,7 @@ const loyaltyInfoCards = [
       title: "Participation Rate",
       bigValue: "2000",
       smallValue: "10000",
-      description: "",
+      description: "Point telah ditukarkan dengan reward",
     },
   },
   {
@@ -120,7 +120,7 @@ const loyaltyInfoCards = [
       title: "Customer Churn Ratei",
       bigValue: "500",
       smallValue: "10000",
-      description: "",
+      description: "Point telah ditukarkan dengan reward",
     },
   },
 ];
@@ -133,12 +133,24 @@ const currentDetails = reactive({
     description: "",
   },
 });
+const isOpen = ref(false);
+const infoCardOnClick = (details) => {
+  currentDetails.details = details;
+  isOpen.value = true;
+};
 </script>
 
 <template>
   <main>
     <AppBar icon="arrow_back" title="Laporan"></AppBar>
-    <PopupModal>
+    <PopupModal
+      :isOpen="isOpen"
+      @modal-close="
+        () => {
+          isOpen = false;
+        }
+      "
+    >
       <template v-slot:header>
         <div class="flex justify-between p-4 items-center">
           <p class="font-semibold">{{ currentDetails.details.title }}</p>
@@ -155,7 +167,9 @@ const currentDetails = reactive({
           <p class="text-3xl font-semibold">
             {{ currentDetails.details.bigValue }}
             <span class="text-xs font-normal">{{
-              currentDetails.details.smallValue ? `/${currentDetails.details.smallValue}` : ""
+              currentDetails.details.smallValue
+                ? `/${currentDetails.details.smallValue}`
+                : ""
             }}</span>
           </p>
           <p class="font-medium">{{ currentDetails.details.description }}</p>
@@ -183,7 +197,7 @@ const currentDetails = reactive({
           :color-icon="infoCard.colorIcon"
           :key="index"
           :class="[infoCard.width]"
-          @click="()=>currentDetails.details = infoCard.details"
+          @click="() => infoCardOnClick(infoCard.details)"
         >
         </InfoCard>
       </div>
@@ -196,7 +210,7 @@ const currentDetails = reactive({
           :color-icon="infoCard.colorIcon"
           :key="index"
           :class="[infoCard.width]"
-          @click="()=>currentDetails.details = infoCard.details"
+          @click="() => infoCardOnClick(infoCard.details)"
         >
         </InfoCard>
       </div>

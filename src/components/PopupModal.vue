@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, ref } from "vue";
-
-const isOpen = ref(true);
+import { onMounted, onUpdated, ref } from "vue";
+const props = defineProps(["isOpen"]);
+const isOpen = ref(props.isOpen);
 const popupModalBackground = ref(null);
+const emit = defineEmits(["modalClose"]);
 const closeModal = (event) => {
   if (event.target.id === "popupModalBackground") {
-    isOpen.value = false;
+    emit("modalClose");
   }
 };
 onMounted(() => {
@@ -13,14 +14,14 @@ onMounted(() => {
     '[data-dismiss="modal"]'
   );
   dismissElements.forEach((element) => {
-    element.addEventListener("click", () => (isOpen.value = false));
+    element.addEventListener("click", () => emit("modalClose"));
   });
 });
 </script>
 
 <template>
   <div
-    v-show="isOpen"
+    v-show="props.isOpen"
     @click="(event) => closeModal(event)"
     class="fixed inset-0 bg-black z-50 bg-opacity-60"
     id="popupModalBackground"
