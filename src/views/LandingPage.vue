@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import PlanCard from "../components/PlanCard.vue";
 import instagramIcon from "@/assets/icons/instagram.svg";
 import twitterIcon from "@/assets/icons/twitter.svg";
 import facebookIcon from "@/assets/icons/facebook.svg";
@@ -55,6 +56,16 @@ const plans = [
       `Statistik kinerja program loyalti <span class="font-semibold">(advance)</span>`,
     ],
     cta: "Mulai Berlangganan",
+    extras: {
+      monthly: {
+        original: "Rp30.000 / bulan",
+      },
+      yearly: {
+        original: "Rp360.000",
+        discounted: "Rp288.000 / tahun",
+      },
+      discount: "Hemat 20%",
+    },
   },
 ];
 
@@ -123,12 +134,12 @@ const informations = [
         </nav>
         <div class="hidden sm:block">
           <button
-            class="text-center w-full sm:w-auto btn btn-secondary btn-base btn-rounded px-6 mr-3"
+            class="text-center w-full sm:w-auto btn btn-secondary btn-base btn-rounded px-8 mr-3"
           >
             Masuk
           </button>
           <button
-            class="text-center w-full sm:w-auto btn btn-primary btn-base btn-rounded px-6"
+            class="text-center w-full sm:w-auto btn btn-primary btn-base btn-rounded px-8"
           >
             Daftar
           </button>
@@ -137,29 +148,33 @@ const informations = [
           <span class="material-symbols-rounded"> menu </span>
         </button>
       </div>
-      <nav
-        class="h-screen bg-white fixed left-0 right-0 transition-all z-30 sm:hidden"
+      <div
+        class="h-screen bg-white fixed left-0 right-0 transition-all z-30 py-4 flex flex-col gap-16 sm:hidden"
         :class="[navIsOpen ? 'nav-open' : 'nav-close']"
       >
-        <ul class="p-4">
-          <li class="font-semibold">Fitur</li>
-          <li class="font-semibold">Harga</li>
-          <li>
-            <button
-              class="text-center w-full sm:w-auto btn btn-secondary btn-lg btn-rounded mt-4"
-            >
-              Masuk
-            </button>
-          </li>
-          <li>
-            <button
-              class="text-center w-full sm:w-auto btn btn-primary btn-lg btn-rounded mt-4"
-            >
-              Daftar
-            </button>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+          <ul>
+            <li class="py-4 px-4 w-full border-b border-t border-lightGray">
+              <a class="font-semibold" href="#features">Fitur</a>
+            </li>
+            <li class="py-4 px-4 w-full border-b border-lightGray">
+              <a class="font-semibold" href="#pricing">Harga</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="px-4">
+          <button
+            class="text-center w-full btn btn-secondary btn-lg btn-rounded"
+          >
+            Masuk
+          </button>
+          <button
+            class="text-center w-full btn btn-primary btn-lg btn-rounded mt-4"
+          >
+            Daftar
+          </button>
+        </div>
+      </div>
     </header>
 
     <main class="pt-16 px-6 max-w-7xl mx-auto lg:pt-20">
@@ -212,7 +227,7 @@ const informations = [
         </div>
       </section>
 
-      <section id="pricing" class="my-9 md:my-32">
+      <section id="pricing" class="my-20 md:my-32">
         <h2 class="font-semibold text-2xl mt-3 sm:text-3xl lg:text-4xl">
           <span class="text-biru2 font-semibold">Mulai gratis,</span> <br />
           lalu bayar sesuai kebutuhan
@@ -220,29 +235,11 @@ const informations = [
         <div
           class="flex flex-col gap-6 mt-9 items-center sm:items-stretch sm:flex-row sm:justify-center"
         >
-          <div
+          <PlanCard
             v-for="(plan, index) in plans"
             :key="'plan-' + index"
-            class="border border-lightGray shadow-cardShadow p-6 rounded-lg flex flex-col justify-between max-w-[320px]"
-          >
-            <div>
-              <h3 class="font-semibold text-2xl">{{ plan.title }}</h3>
-              <h4 class="font-semibold text-lg mt-3">{{ plan.price }}</h4>
-              <ul class="mt-3 ml-4">
-                <li
-                  v-for="(feature, index) in plan.features"
-                  :key="'feature-' + index"
-                  v-html="feature"
-                  class="list-disc"
-                ></li>
-              </ul>
-            </div>
-            <button
-              class="text-center w-full btn btn-primary btn-lg btn-rounded mt-9"
-            >
-              {{ plan.cta }}
-            </button>
-          </div>
+            v-bind="plan"
+          />
         </div>
       </section>
     </main>
