@@ -217,7 +217,7 @@ const informations = [
             :key="'feature-' + index"
           >
             <h3 class="font-semibold text-2xl">{{ feature.headline }}</h3>
-            <p v-html="feature.description"></p>
+            <p v-html="feature.description" class="md:text-lg"></p>
           </div>
           <img
             class="hidden md:block mx-auto col-start-2 col-end-3 row-start-1 row-end-3"
