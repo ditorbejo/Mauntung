@@ -7,18 +7,18 @@
 
 @layer components {
   .btn {
-    @apply text-base font-medium text-white;
+    @apply text-base font-medium;
   }
 
   .btn-primary {
-    @apply bg-biru2;
+    @apply bg-biru2 text-white;
   }
 
   .btn-secondary {
-    @apply bg-biru4;
+    @apply border border-lightGray;
   }
 
-  .btn-disabled{
+  .btn-disabled {
     @apply border border-lightGray text-lightGray;
   }
 
@@ -54,7 +54,6 @@
 
 body {
   margin: 0 auto;
-  max-width: 400px;
   min-height: 100vh;
   @apply text-biru1;
   font-family: Barlow, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
