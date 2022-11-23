@@ -11,6 +11,9 @@ const landingPageRoute = {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [landingPageRoute, merchantRoutes, customerRoutes],
+  scrollBehavior: () => {
+    return { top: 0 };
+  },
 });
 
 export default router;
