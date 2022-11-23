@@ -7,21 +7,37 @@ let routes = {
       path: "",
       name: "home",
       component: () => import("@/views/customer/HomeView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: true,
+      },
     },
     {
       path: "history",
       name: "history",
       component: () => import("@/views/customer/HistoryView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: true,
+      },
     },
     {
       path: "profile",
       name: "profile",
       component: () => import("@/views/customer/ProfileView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: true,
+      },
     },
     {
       path: "rewards",
       name: "rewards",
       component: () => import("@/views/customer/RewardsView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: true,
+      },
     },
     membershipRoutes,
   ],
@@ -30,16 +46,19 @@ let routes = {
   },
 };
 
-routes.children = routes.children.map(({ path, name, component, children }) => {
-  return {
-    path,
-    name: "customer-" + name,
-    component,
-    meta: {
-      role: "customer",
-    },
-    children,
-  };
-});
+routes.children = routes.children.map(
+  ({ path, name, component, children, meta }) => {
+    return {
+      path,
+      name: "customer-" + name,
+      component,
+      meta: {
+        ...meta,
+        role: "customer",
+      },
+      children,
+    };
+  }
+);
 
 export default routes;
