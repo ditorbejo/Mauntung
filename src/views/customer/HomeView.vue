@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 import NearbyCarousel from "@/components/NearbyCarousel.vue";
 import ButtonGroup from "@/components/ButtonGroup.vue";
 import PointCard from "@/components/PointCard.vue";
-import RewardCard from "@/components/RewardCard.vue";
+import RedeemCard from "@/components/RedeemCard.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
 
 const pointCards = [
@@ -31,7 +31,7 @@ const pointCards = [
   },
 ];
 
-const rewardCards = [
+const redeemCards = [
   {
     rewardName: "1 Kali Cuci Gratis",
     isUsed: false,
@@ -87,8 +87,8 @@ const active = ref("left");
         v-show="active === 'right'"
         class="flex flex-col gap-3 mt-3 items-center"
       >
-        <RewardCard
-          v-for="(card, index) in rewardCards"
+        <RedeemCard
+          v-for="(card, index) in redeemCards"
           :key="index"
           v-bind="card"
         />
