@@ -1,12 +1,6 @@
 <script setup>
-import { useRouter } from "vue-router";
-
 const props = defineProps(["icon", "title"]);
-const router = useRouter();
-
-const goBack = () => {
-  router.go(-1);
-};
+const emits = defineEmits(["buttonClick"]);
 </script>
 
 <template>
@@ -15,7 +9,7 @@ const goBack = () => {
   >
     <button
       class="flex items-center bg-biru2 rounded-full py-1 px-1"
-      @click="goBack"
+      @click="$emit('buttonClick')"
     >
       <span class="material-symbols-rounded text-white">
         {{ props.icon }}
