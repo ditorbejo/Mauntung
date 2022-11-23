@@ -102,7 +102,7 @@ const active = ref("left");
           <button class="flex items-center">
             <span class="text-xs text-biru2 font-semibold mr-2">Semua</span>
             <span
-              class="p-1 rounded-full bg-biru2 text-white material-symbols-rounded arrow-button"
+              class="p-1 rounded-full bg-biru2 text-white material-symbols-rounded arrow-button text-xs leading-none"
             >
               arrow_right_alt
             </span>
@@ -110,22 +110,22 @@ const active = ref("left");
         </RouterLink>
       </div>
       <div class="flex flex-col gap-3">
-        <MembershipProgramCard
+        <RouterLink
           v-for="index in 3"
           :key="index"
-          :is-merchant="false"
-          program-name="Laundree Membership"
-          program-type="point"
-          program-img="https://via.placeholder.com/48"
-          :total-point="10"
-        />
+          :to="{ name: 'customer-membership-detail', params: { id: index } }"
+        >
+          <MembershipProgramCard
+            :is-merchant="false"
+            program-name="Laundree Membership"
+            program-type="point"
+            program-img="https://via.placeholder.com/48"
+            :total-point="10"
+          />
+        </RouterLink>
       </div>
     </section>
   </main>
 </template>
 
-<style scoped>
-.arrow-button {
-  font-size: 12px;
-}
-</style>
+<style scoped></style>

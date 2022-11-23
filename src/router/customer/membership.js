@@ -10,6 +10,15 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: ":id",
+      name: "membership-detail",
+      component: () => import("@/views/customer/membership/DetailView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: false,
+      },
+    },
   ],
 };
 
