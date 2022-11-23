@@ -1,10 +1,15 @@
 <script setup>
 import { ref, watch } from "vue";
 import { RouterView, useRoute } from "vue-router";
+import LoadingPopup from "./components/LoadingPopup.vue";
 import NavigationBar from "./components/NavigationBar.vue";
+import { useLoadingStore } from "@/stores/loading";
+
 const showQRScannerButton = ref(false);
 const route = useRoute();
 const scannerPage = ref({ name: "customer-scanner" });
+const loadingStore = useLoadingStore();
+
 watch(
   () => route.meta,
   (toMeta) => {
@@ -25,6 +30,7 @@ watch(
       </span>
     </button>
   </RouterLink>
+  <LoadingPopup v-if="loadingStore.isLoading" />
 </template>
 
 <style scoped></style>
