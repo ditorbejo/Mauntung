@@ -48,6 +48,15 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: "claim",
+      name: "claim",
+      component: () => import("@/views/customer/ClaimPointView.vue"),
+      meta: {
+        showNavbar: false,
+        showQRScannerButton: false,
+      },
+    },
     membershipRoutes,
   ],
   meta: {

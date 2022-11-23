@@ -2,12 +2,33 @@
 import AppBar from "../../components/AppBar.vue";
 import { QrcodeStream } from "vue3-qrcode-reader";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useLoadingStore } from "@/stores/loading";
 
+const router = useRouter();
 const result = ref("");
 const error = ref("");
+const loadingStore = useLoadingStore();
+
 const onDecode = (res) => {
-  result.value = res;
+  loadingStore.showLoading();
+  setTimeout(() => {
+    loadingStore.hideLoading();
+    try {
+      const parsed = new URL(res);
+      const code = parsed.searchParams.get("code");
+      const isSameOrigin = parsed.origin === window.location.origin;
+      const isCorrectPath = parsed.pathname === "/customer/claim";
+      const isValid = isSameOrigin && isCorrectPath && code;
+      if (isValid) {
+        router.push({ name: "customer-claim", query: { code } });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, 2000);
 };
+
 const onInit = async (promise) => {
   try {
     await promise;
