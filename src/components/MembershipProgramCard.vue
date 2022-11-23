@@ -5,6 +5,7 @@ const props = defineProps([
   "programType",
   "programImg",
   "totalPoint",
+  "claimableReward",
 ]);
 </script>
 
@@ -45,10 +46,13 @@ const props = defineProps([
         <h4 class="text-sm">{{ props.totalPoint }} Point</h4>
       </div>
       <button
+        v-if="props.claimableReward"
         class="flex items-center gap-1 justify-center bg-biru2 border rounded-full px-4 py-1.5 text-white"
       >
         <span class="material-symbols-rounded"> confirmation_number </span>
-        <span class="font-medium text-xs">Dapat menukar 1 reward</span>
+        <span class="font-medium text-xs"
+          >Dapat menukar {{ props.claimableReward }} reward</span
+        >
       </button>
     </div>
   </div>
