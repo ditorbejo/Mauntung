@@ -39,6 +39,15 @@ let routes = {
         showQRScannerButton: true,
       },
     },
+    {
+      path: "scanner",
+      name: "scanner",
+      component: () => import("@/views/customer/PointCodeScannerView.vue"),
+      meta: {
+        showNavbar: false,
+        showQRScannerButton: false,
+      },
+    },
     membershipRoutes,
   ],
   meta: {
