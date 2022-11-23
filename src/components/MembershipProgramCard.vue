@@ -3,6 +3,7 @@ const props = defineProps([
   "isMerchant",
   "programName",
   "programType",
+  "programImg",
   "totalPoint",
 ]);
 </script>
@@ -13,7 +14,11 @@ const props = defineProps([
     class="flex flex-col gap-4.5 py-3 px-4 border border-lightGray border-solid shadow-cardShadow rounded-lg items-start"
   >
     <div class="flex items-center gap-2.5">
-      <img class="" src="https://via.placeholder.com/36" alt="" />
+      <img
+        class="w-9 h-9 object-cover"
+        :src="props.programImg"
+        :alt="props.programName"
+      />
       <div>
         <h3 class="text-lg font-semibold">{{ props.programName }}</h3>
         <h4 class="text-sm">{{ props.programType }}</h4>
@@ -28,7 +33,11 @@ const props = defineProps([
     class="flex gap-3 py-4 px-5 6 border border-lightGray border-solid shadow-cardShadow rounded-md"
   >
     <div class="flex items-center">
-      <img src="https://via.placeholder.com/48" alt="" />
+      <img
+        class="w-12 h-12 object-cover"
+        :src="props.programImg"
+        :alt="props.programName"
+      />
     </div>
     <div class="flex flex-col gap-2.5">
       <div>

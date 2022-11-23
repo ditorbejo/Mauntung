@@ -22,7 +22,7 @@ const slides = [
 </script>
 
 <template>
-  <VueperSlides :arrows="false" :bullets-outside="true">
+  <VueperSlides :arrows="false" :bullets-outside="true" :slide-ratio="1 / 2">
     <VueperSlide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
   </VueperSlides>
 </template>

@@ -51,8 +51,8 @@ const validity = (() => {
     <div
       class="flex-1 p-3 flex flex-col items-center justify-center text-center"
     >
-      <img :src="props.programImg" alt="" />
-      <p class="text-lg text-biru1 font-semibold mt-2.5">
+      <img :src="props.programImg" alt="" class="w-12 h-12 object-cover" />
+      <p class="text-lg text-biru1 font-semibold">
         {{ props.programName }}
       </p>
     </div>

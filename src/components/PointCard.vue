@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["name", "type", "value", "date"]);
+const props = defineProps(["name", "type", "value", "date", "programImg"]);
 const type = {
   point: "Poin",
   stamp: "Stempel",
@@ -16,8 +16,8 @@ const formattedDate = `${year}-${month}-${day}`;
     class="flex p-3 items-center border-lightGray rounded-lg shadow-cardShadow"
   >
     <img
-      class="w-10 h-10"
-      src="https://via.placeholder.com/40"
+      class="w-10 h-10 object cover"
+      :src="props.programImg"
       alt="point-card"
     />
     <div class="ml-3">

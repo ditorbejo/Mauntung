@@ -24,6 +24,7 @@ const navigateToGenerateCodeView = () => {
         :is-merchant="true"
         program-name="Laundree Membership"
         program-type="Berbasis Poin"
+        program-img="https://via.placeholder.com/36"
       />
     </div>
     <h1 class="font-semibold mb-5 mt-8">Aktivitas Hari ini</h1>

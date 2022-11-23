@@ -13,18 +13,21 @@ const pointCards = [
     value: 1,
     type: "point",
     date: new Date(),
+    programImg: "https://via.placeholder.com/40",
   },
   {
     name: "Laundree",
     value: 1,
     type: "point",
     date: new Date(),
+    programImg: "https://via.placeholder.com/40",
   },
   {
     name: "Laundree",
     value: 1,
     type: "point",
     date: new Date(),
+    programImg: "https://via.placeholder.com/40",
   },
 ];
 
@@ -113,6 +116,7 @@ const active = ref("left");
           :is-merchant="false"
           program-name="Laundree Membership"
           program-type="point"
+          program-img="https://via.placeholder.com/48"
           :total-point="10"
         />
       </div>
