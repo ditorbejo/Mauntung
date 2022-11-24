@@ -1,0 +1,20 @@
+<script setup>
+import CustomerPointHistoryItem from "./CustomerPointHistoryItem.vue";
+
+const props = defineProps(["histories"]);
+</script>
+
+<template>
+  <div>
+    <div class="py-3 px-5 bg-lightGray">
+      <p class="font-medium">{{ histories[0].date.toDateString() }}</p>
+    </div>
+    <div class="flex flex-col gap-3 mt-3 px-7.5">
+      <CustomerPointHistoryItem
+        v-for="(history, index) in histories"
+        :key="index"
+        v-bind="history"
+      />
+    </div>
+  </div>
+</template>
