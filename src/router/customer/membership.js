@@ -11,7 +11,7 @@ let routes = {
       },
     },
     {
-      path: ":id",
+      path: ":membership",
       name: "membership-detail",
       component: () => import("@/views/customer/membership/DetailView.vue"),
       meta: {
@@ -20,7 +20,7 @@ let routes = {
       },
     },
     {
-      path: ":id/rewards",
+      path: ":membership/rewards",
       name: "membership-rewards",
       component: () => import("@/views/customer/membership/RewardsView.vue"),
       meta: {
@@ -29,11 +29,20 @@ let routes = {
       },
     },
     {
-      path: ":id/redeems",
+      path: ":membership/redeems",
       name: "membership-redeems",
       component: () => import("@/views/customer/RewardsView.vue"),
       meta: {
         showNavbar: true,
+        showQRScannerButton: false,
+      },
+    },
+    {
+      path: ":membership/rewards/:reward",
+      name: "membership-rewards-detail",
+      component: () => import("@/views/customer/RewardDetailView.vue"),
+      meta: {
+        showNavbar: false,
         showQRScannerButton: false,
       },
     },
