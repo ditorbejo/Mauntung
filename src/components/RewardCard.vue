@@ -6,7 +6,11 @@ const props = defineProps(["name", "img", "point"]);
   <div
     class="bg-white border border-lightGray shadow-cardShadow rounded-lg p-2"
   >
-    <img class="w-32 h-32 rounded-md" :src="props.img" :alt="props.name" />
+    <img
+      class="w-full aspect-square rounded-md"
+      :src="props.img"
+      :alt="props.name"
+    />
     <div class="mt-1">
       <p class="w-full truncate overflow-x-clip">
         {{ props.name }}

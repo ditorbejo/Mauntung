@@ -134,7 +134,7 @@ const featuredRedeems = [
       <section class="mt-8">
         <div class="flex justify-between items-center mb-5 mx-7.5">
           <h2 class="text-lg font-semibold">Tukarkan Poin Anda</h2>
-          <RouterLink :to="{ name: 'customer-membership-index' }">
+          <RouterLink :to="{ name: 'customer-membership-rewards' }">
             <button class="flex items-center">
               <span class="text-xs text-biru2 font-semibold mr-2">Semua</span>
               <span
@@ -159,7 +159,7 @@ const featuredRedeems = [
       <section class="mt-8">
         <div class="flex justify-between items-center mb-5 mx-7.5">
           <h2 class="text-lg font-semibold">Reward Anda</h2>
-          <RouterLink :to="{ name: 'customer-membership-index' }">
+          <RouterLink :to="{ name: 'customer-membership-redeems' }">
             <button class="flex items-center">
               <span class="text-xs text-biru2 font-semibold mr-2">Semua</span>
               <span

@@ -19,6 +19,24 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: ":id/rewards",
+      name: "membership-rewards",
+      component: () => import("@/views/customer/membership/RewardsView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: false,
+      },
+    },
+    {
+      path: ":id/redeems",
+      name: "membership-redeems",
+      component: () => import("@/views/customer/RewardsView.vue"),
+      meta: {
+        showNavbar: true,
+        showQRScannerButton: false,
+      },
+    },
   ],
 };
 
