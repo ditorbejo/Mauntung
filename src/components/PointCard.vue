@@ -13,7 +13,7 @@ const formattedDate = `${year}-${month}-${day}`;
 
 <template>
   <div
-    class="flex p-3 items-center border-lightGray rounded-lg shadow-cardShadow"
+    class="flex p-3 items-center border-lightGray rounded-md shadow-cardShadow"
   >
     <img
       class="w-10 h-10 object cover"

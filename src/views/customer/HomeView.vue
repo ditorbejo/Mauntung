@@ -59,8 +59,8 @@ const active = ref("left");
 </script>
 
 <template>
-  <main class="px-7.5 pb-20">
-    <h1 class="mt-3 mb-5 text-lg font-semibold">Halo, Joomla</h1>
+  <main class="px-7.5 pt-4 pb-20">
+    <h1 class="mb-5 text-lg font-semibold">Halo, Joomla</h1>
 
     <section id="nearby-brands">
       <h2 class="text-lg font-semibold mb-2">Brand di sekitarmu</h2>
