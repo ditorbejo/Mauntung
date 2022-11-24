@@ -1,6 +1,7 @@
 <script setup>
 import AppBar from "../../components/AppBar.vue";
 import { QrcodeStream } from "vue3-qrcode-reader";
+import { RouterLink } from "vue-router";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useLoadingStore } from "@/stores/loading";
@@ -77,9 +78,12 @@ const onInit = async (promise) => {
     <p>{{ error }}</p>
     <div class="flex flex-col items-center px-7.5 mt-12">
       <p class="font-medium">Bukan ingin memindai Kode Poin?</p>
-      <button class="btn btn-primary btn-rounded btn-lg w-full mt-3">
-        Tunjukkan Kode Pelanggan
-      </button>
+
+      <RouterLink :to="{ name: 'customer-code' }" class="w-full">
+        <button class="btn btn-primary btn-rounded btn-lg w-full mt-3">
+          Tunjukkan Kode Pelanggan
+        </button>
+      </RouterLink>
     </div>
   </main>
 </template>

@@ -66,6 +66,15 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: "code",
+      name: "code",
+      component: () => import("@/views/customer/CustomerCodeView.vue"),
+      meta: {
+        showNavbar: false,
+        showQRScannerButton: false,
+      },
+    },
     membershipRoutes,
   ],
   meta: {
