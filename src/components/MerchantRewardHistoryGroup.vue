@@ -1,5 +1,5 @@
 <script setup>
-import RewardHistoryItem from "./RewardHistoryItem.vue";
+import RewardHistoryItem from "./MerchantRewardHistoryItem.vue";
 
 const props = defineProps(["histories"]);
 const monthNames = [

@@ -1,5 +1,5 @@
 <script setup>
-import PointHistoryItem from "./PointHistoryItem.vue";
+import PointHistoryItem from "./MerchantPointHistoryItem.vue";
 
 const props = defineProps(["histories"]);
 const monthNames = [
