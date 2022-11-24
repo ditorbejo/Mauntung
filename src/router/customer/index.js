@@ -31,6 +31,15 @@ let routes = {
       },
     },
     {
+      path: "profile/edit",
+      name: "profile-edit",
+      component: () => import("@/views/customer/EditProfileView.vue"),
+      meta: {
+        showNavbar: false,
+        showQRScannerButton: false,
+      },
+    },
+    {
       path: "rewards",
       name: "rewards",
       component: () => import("@/views/customer/RewardsView.vue"),
