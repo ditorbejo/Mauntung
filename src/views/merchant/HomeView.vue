@@ -25,7 +25,7 @@ const navigateToGenerateCodeView = () => {
         <MembershipProgramCard
           :is-merchant="true"
           program-name="Laundree Membership"
-          program-type="Berbasis Poin"
+          program-type="point"
           program-img="https://via.placeholder.com/36"
         />
       </div>

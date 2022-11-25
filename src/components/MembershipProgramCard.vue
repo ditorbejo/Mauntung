@@ -9,6 +9,11 @@ defineProps({
   totalPoint: Number,
   claimableRewards: Number,
 });
+
+const programTypes = {
+  stamp: "Berbasis Stempel",
+  point: "Berbasis Poin",
+};
 </script>
 
 <template>
@@ -20,7 +25,7 @@ defineProps({
       <img class="w-9 h-9 object-cover" :src="programImg" :alt="programName" />
       <div>
         <h3 class="text-lg font-semibold">{{ programName }}</h3>
-        <h4 class="text-sm">{{ programType }}</h4>
+        <h4 class="text-sm">{{ programTypes[programType] }}</h4>
       </div>
     </div>
     <button class="bg-biru2 border rounded-xl px-3 py-2 ml-12 text-white">

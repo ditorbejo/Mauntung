@@ -8,7 +8,7 @@ const props = defineProps({
   },
   nameInput: String,
   id: String,
-  value: String,
+  value: [String, Number],
   disabled: Boolean,
 });
 
