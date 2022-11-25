@@ -1,13 +1,12 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 import TextField from "@/components/TextField.vue";
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Edit Profil"></AppBar>
+  <BaseLayout :use-app-bar="true" app-bar-icon="arrow_back" title="Edit Profil">
     <div class="px-7.5">
-      <div class="flex flex-col gap-4 items-center mb-8 mt-5">
+      <div class="flex flex-col gap-4 items-center mb-8">
         <p class="font-medium">Foto Profil</p>
         <img
           class="border border-biru1 rounded-lg shadow-cardShadow"
@@ -48,5 +47,5 @@ import TextField from "@/components/TextField.vue";
       </div>
       <button class="w-full btn btn-primary btn-lg btn-rounded">Simpan</button>
     </div>
-  </main>
+  </BaseLayout>
 </template>

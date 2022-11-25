@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref } from "vue";
-import AppBar from "../../components/AppBar.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 import ButtonGroup from "../../components/ButtonGroup.vue";
 import InfoCard from "../../components/InfoCard.vue";
 import PopupModal from "../../components/PopupModal.vue";
@@ -141,8 +141,12 @@ const infoCardOnClick = (details) => {
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Laporan"></AppBar>
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Laporan"
+  >
     <PopupModal
       :isOpen="isOpen"
       @modal-close="
@@ -177,7 +181,7 @@ const infoCardOnClick = (details) => {
       </template>
     </PopupModal>
     <div class="flex flex-col gap-3 px-7.5">
-      <div class="mt-5">
+      <div>
         <p class="font-medium mb-2">Periode</p>
         <Datepicker v-model="date" range :enableTimePicker="false" />
       </div>
@@ -215,5 +219,5 @@ const infoCardOnClick = (details) => {
         </InfoCard>
       </div>
     </div>
-  </main>
+  </BaseLayout>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import AppBar from "../../components/AppBar.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 import ButtonGroup from "../../components/ButtonGroup.vue";
 import PointHistoryList from "../../components/MerchantPointHistoryGroup.vue";
 import RewardHistoryList from "../../components/MerchantRewardHistoryGroup.vue";
@@ -54,12 +54,16 @@ const active = ref("left");
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Daftar Riwayat"></AppBar>
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Daftar Riwayat"
+  >
     <ButtonGroup
       @left-click="() => (active = 'left')"
       @right-click="() => (active = 'right')"
-      class="mt-5 mb-3 px-7.5"
+      class="mb-3 px-7.5"
       :active="active"
       left-text="Poin"
       right-text="Reward"
@@ -72,5 +76,5 @@ const active = ref("left");
       <RewardHistoryList :histories="rewardHistories"></RewardHistoryList>
       <RewardHistoryList :histories="rewardHistories"></RewardHistoryList>
     </div>
-  </main>
+  </BaseLayout>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 import { RouterLink } from "vue-router";
 const merchant = {
   name: "Joomla",
@@ -30,9 +30,13 @@ const menus = [
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Profil"> </AppBar>
-    <div class="flex gap-2 py-4 items-center shadow-cardShadow">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Profil"
+  >
+    <div class="flex gap-2 py-4 items-center shadow-cardShadow -mt-5">
       <div class="px-4 py-5.5">
         <img src="https://via.placeholder.com/80" alt="" />
       </div>
@@ -59,5 +63,5 @@ const menus = [
         {{ menu.icon }}
       </span>
     </a>
-  </main>
+  </BaseLayout>
 </template>
