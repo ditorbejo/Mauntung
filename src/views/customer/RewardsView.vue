@@ -1,7 +1,7 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
 import TextField from "../../components/TextField.vue";
 import RedeemCard from "../../components/RedeemCard.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const redeemCards = [
   {
@@ -57,9 +57,13 @@ const redeemCards = [
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Daftar Reward" />
-    <div class="px-7.5 pt-5 pb-20">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Daftar Reward"
+  >
+    <div class="px-7.5">
       <TextField placeholder="Cari merchant/brand..." type-input="text" />
 
       <div class="flex flex-col gap-3 mt-8 items-center">
@@ -70,5 +74,5 @@ const redeemCards = [
         />
       </div>
     </div>
-  </main>
+  </BaseLayout>
 </template>

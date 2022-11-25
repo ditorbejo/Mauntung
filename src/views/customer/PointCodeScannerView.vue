@@ -1,10 +1,10 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
 import { QrcodeStream } from "vue3-qrcode-reader";
 import { RouterLink } from "vue-router";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useLoadingStore } from "@/stores/loading";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const router = useRouter();
 const result = ref("");
@@ -57,9 +57,12 @@ const onInit = async (promise) => {
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Pindai Kode Poin" />
-    <div class="relative w-full aspect-square">
+  <BaseLayout
+    :use-app-bar="true"
+    app-bar-icon="arrow_back"
+    title="Pindai Kode Poin"
+  >
+    <div class="relative w-full aspect-square -mt-5">
       <QrcodeStream @decode="onDecode" @init="onInit" />
       <div
         class="aspect-square border-2 border-red-700 absolute inset-14"
@@ -85,5 +88,5 @@ const onInit = async (promise) => {
         </button>
       </RouterLink>
     </div>
-  </main>
+  </BaseLayout>
 </template>

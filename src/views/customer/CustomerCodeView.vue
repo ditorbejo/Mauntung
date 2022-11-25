@@ -1,15 +1,18 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
 import QrcodeVue from "qrcode.vue";
 import { RouterLink } from "vue-router";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const customerCode = "abc-123-abc-123";
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Kode Pelanggan" />
-    <div class="px-7.5 pt-5 pb-20">
+  <BaseLayout
+    :use-app-bar="true"
+    app-bar-icon="arrow_back"
+    title="Kode Pelanggan"
+  >
+    <div class="px-7.5">
       <h2 class="font-medium text-center">
         Tunjukkan kode pelanggan Anda ke Merchant untuk dipindai
       </h2>
@@ -30,5 +33,5 @@ const customerCode = "abc-123-abc-123";
         </button>
       </RouterLink>
     </div>
-  </main>
+  </BaseLayout>
 </template>

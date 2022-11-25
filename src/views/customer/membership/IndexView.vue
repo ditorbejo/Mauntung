@@ -1,14 +1,18 @@
 <script setup>
-import AppBar from "@/components/AppBar.vue";
 import TextField from "@/components/TextField.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
 import { RouterLink } from "vue-router";
+import BaseLayout from "../../../layouts/BaseLayout.vue";
 </script>
 
 <template>
-  <main class="pb-20">
-    <AppBar icon="arrow_back" title="Daftar Membership" />
-    <div class="px-7.5 pt-6">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Daftar Membership"
+  >
+    <div class="px-7.5">
       <TextField placeholder="Cari merchant/brand..." type-input="text" />
       <div class="flex flex-col gap-3 mt-8">
         <RouterLink
@@ -29,5 +33,5 @@ import { RouterLink } from "vue-router";
         </RouterLink>
       </div>
     </div>
-  </main>
+  </BaseLayout>
 </template>

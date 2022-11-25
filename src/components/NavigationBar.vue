@@ -1,7 +1,7 @@
 <script setup>
 import NavigationItem from "./NavigationItem.vue";
 import { useRoute } from "vue-router";
-import { reactive, ref, watch } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 const route = useRoute();
 const state = reactive({ navItems: [] });
 const showNavbar = ref(false);
@@ -52,20 +52,23 @@ const navItems = {
   ],
 };
 
-watch(
-  () => route.meta,
-  (toMeta, beforeMeta) => {
-    if (toMeta.role !== beforeMeta.role) {
-      state.navItems = navItems[toMeta.role];
-    }
-    showNavbar.value = toMeta.showNavbar;
-  }
-);
+// watch(
+//   () => route.meta,
+//   (toMeta, beforeMeta) => {
+//     if (toMeta.role !== beforeMeta.role) {
+//       state.navItems = navItems[toMeta.role];
+//     }
+//     showNavbar.value = toMeta.showNavbar;
+//   }
+// );
+
+onMounted(() => {
+  state.navItems = navItems[route.meta.role];
+});
 </script>
 
 <template>
   <nav
-    v-if="showNavbar"
     class="flex justify-between px-6 py-2.5 fixed bottom-0 left-0 right-0 shadow-bottomBarShadow bg-white"
   >
     <NavigationItem

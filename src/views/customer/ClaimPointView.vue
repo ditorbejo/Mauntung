@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
-import AppBar from "@/components/AppBar.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
 import { useLoadingStore } from "@/stores/loading";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const loadingStore = useLoadingStore();
 
@@ -35,9 +35,8 @@ const claimPoint = () => {
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Claim Poin" />
-    <div v-if="!isClaimed" class="px-7.5 pt-4 pb-20">
+  <BaseLayout :use-app-bar="true" app-bar-icon="arrow_back" title="Claim Poin">
+    <div v-if="!isClaimed" class="px-7.5">
       <div
         class="p-3 rounded-lg bg-white border border-lightGray shadow-cardShadow flex flex-col gap-3"
       >
@@ -85,7 +84,7 @@ const claimPoint = () => {
         </button>
       </RouterLink>
     </div>
-    <div v-else class="px-7.5 pt-4 pb-20">
+    <div v-else class="px-7.5">
       <div class="flex flex-col gap-12 items-center">
         <h2 class="text-lg font-semibold text-center">
           Selamat <br />
@@ -105,5 +104,5 @@ const claimPoint = () => {
         </button>
       </RouterLink>
     </div>
-  </main>
+  </BaseLayout>
 </template>

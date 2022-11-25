@@ -1,6 +1,7 @@
 <script setup>
-import AppBar from "../../components/AppBar.vue";
 import { RouterLink } from "vue-router";
+import BaseLayout from "../../layouts/BaseLayout.vue";
+
 const customer = {
   name: "Joomla",
   phone: "+6232312323232",
@@ -36,8 +37,12 @@ const menus = [
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Profil"> </AppBar>
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Profil"
+  >
     <div class="flex gap-2 py-4 items-center shadow-cardShadow">
       <div class="px-4 py-5.5">
         <img class="w-20 h-20" :src="customer.img" :alt="customer.name" />
@@ -65,5 +70,5 @@ const menus = [
         {{ menu.icon }}
       </span>
     </a>
-  </main>
+  </BaseLayout>
 </template>

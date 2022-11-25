@@ -1,7 +1,7 @@
 <script setup>
-import BottomActionBar from "@/components/BottomActionBar.vue";
 import PopupModal from "../../components/PopupModal.vue";
 import { computed, ref } from "vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const reward = {
   name: "1 Kali Cuci Gratis",
@@ -30,8 +30,12 @@ const modalIsOpen = ref(false);
 </script>
 
 <template>
-  <main class="pb-20">
-    <div class="relative shadow-cardShadow">
+  <BaseLayout
+    :use-bottom-action-bar="true"
+    @bottom-action-bar-button-click="() => (modalIsOpen = true)"
+    bottom-action-bar-action-name="Tukarkan"
+  >
+    <div class="relative shadow-cardShadow -mt-5">
       <button
         class="absolute flex items-center bg-biru2 rounded-full py-2.5 px-2.5 top-4 left-4 z-30"
       >
@@ -95,13 +99,6 @@ const modalIsOpen = ref(false);
       <p>{{ reward.termsCondition }}</p>
     </div>
 
-    <BottomActionBar
-      action-name="Tukarkan"
-      @button-click="() => (modalIsOpen = true)"
-    >
-      <p>{{ qty }} Pcs ({{ requiredPoints }} Poin)</p>
-    </BottomActionBar>
-
     <PopupModal
       :isOpen="modalIsOpen"
       @modal-close="
@@ -146,5 +143,9 @@ const modalIsOpen = ref(false);
         </div>
       </template>
     </PopupModal>
-  </main>
+
+    <template #bottom-action-bar>
+      <p>{{ qty }} Pcs ({{ requiredPoints }} Poin)</p>
+    </template>
+  </BaseLayout>
 </template>

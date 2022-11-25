@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import AppBar from "../../components/AppBar.vue";
 import ButtonGroup from "../../components/ButtonGroup.vue";
 import CustomerPointHistoryGroup from "../../components/CustomerPointHistoryGroup.vue";
+import BaseLayout from "../../layouts/BaseLayout.vue";
 
 const claimedPoints = [
   {
@@ -62,13 +62,17 @@ const active = ref("left");
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Daftar Riwayat" />
-    <div class="pb-20">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Daftar Riwayat"
+  >
+    <div>
       <ButtonGroup
         @left-click="() => (active = 'left')"
         @right-click="() => (active = 'right')"
-        class="mt-5 mb-3 px-7.5"
+        class="mb-3 px-7.5"
         :active="active"
         left-text="Perolehan"
         right-text="Penukaran"
@@ -82,5 +86,5 @@ const active = ref("left");
         <CustomerPointHistoryGroup :histories="redeemedPoints" />
       </div>
     </div>
-  </main>
+  </BaseLayout>
 </template>

@@ -1,8 +1,8 @@
 <script setup>
-import AppBar from "@/components/AppBar.vue";
 import TextField from "@/components/TextField.vue";
 import { RouterLink, useRoute } from "vue-router";
 import RewardCard from "../../../components/RewardCard.vue";
+import BaseLayout from "../../../layouts/BaseLayout.vue";
 
 const route = useRoute();
 
@@ -59,9 +59,13 @@ const rewards = [
 </script>
 
 <template>
-  <main class="pb-20">
-    <AppBar icon="arrow_back" title="Daftar Membership" />
-    <div class="pt-5 px-7.5">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Penukaran"
+  >
+    <div class="px-7.5">
       <TextField placeholder="Cari reward..." type-input="text" />
       <div class="grid grid-cols-2 items-center gap-4 mt-8">
         <RouterLink
@@ -79,5 +83,5 @@ const rewards = [
         </RouterLink>
       </div>
     </div>
-  </main>
+  </BaseLayout>
 </template>

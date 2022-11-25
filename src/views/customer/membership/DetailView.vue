@@ -1,10 +1,10 @@
 <script setup>
-import AppBar from "@/components/AppBar.vue";
 import RedeemCard from "@/components/RedeemCard.vue";
 import RewardCard from "../../../components/RewardCard.vue";
 import TierCard from "@/components/TierCard.vue";
 import StampCard from "@/components/StampCard.vue";
 import { RouterLink, useRoute } from "vue-router";
+import BaseLayout from "../../../layouts/BaseLayout.vue";
 
 const route = useRoute();
 
@@ -120,10 +120,13 @@ const stampCard = {
 </script>
 
 <template>
-  <main>
-    <AppBar icon="arrow_back" title="Detail Membership" />
-
-    <div class="pt-6 pb-20">
+  <BaseLayout
+    :use-app-bar="true"
+    :use-nav-bar="true"
+    app-bar-icon="arrow_back"
+    title="Detail Membership"
+  >
+    <div>
       <section class="mx-7.5">
         <TierCard :tier="tier" />
         <div
@@ -201,5 +204,5 @@ const stampCard = {
         </div>
       </section>
     </div>
-  </main>
+  </BaseLayout>
 </template>
