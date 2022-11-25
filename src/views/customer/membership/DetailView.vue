@@ -3,6 +3,7 @@ import AppBar from "@/components/AppBar.vue";
 import RedeemCard from "@/components/RedeemCard.vue";
 import RewardCard from "../../../components/RewardCard.vue";
 import TierCard from "@/components/TierCard.vue";
+import StampCard from "@/components/StampCard.vue";
 import { RouterLink, useRoute } from "vue-router";
 
 const route = useRoute();
@@ -107,6 +108,15 @@ const featuredRedeems = [
     programName: "Laundree",
   },
 ];
+
+const stampCard = {
+  balance: 5,
+  willVoidSoon: {
+    stamps: 1,
+    voidAt: new Date(2022, 11, 20),
+  },
+  capacity: 10,
+};
 </script>
 
 <template>
@@ -131,6 +141,7 @@ const featuredRedeems = [
           </div>
           <p class="text-lg font-semibold">{{ point.balance }}</p>
         </div>
+        <StampCard class="mt-3" :stamp-card="stampCard" />
       </section>
 
       <section class="mt-8">
