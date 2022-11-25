@@ -1,10 +1,5 @@
 <script setup>
-import { computed } from "vue";
-
-const props = defineProps(["stampCard"]);
-const gridCols = computed(() => {
-  return parseInt(props.stampCard.capacity / 5);
-});
+defineProps({ stampCard: Object });
 </script>
 
 <template>
@@ -16,7 +11,7 @@ const gridCols = computed(() => {
       <p class="text-sm">
         Anda telah mengumpulkan
         <span class="text-sm font-semibold"
-          >{{ props.stampCard.balance }} stempel</span
+          >{{ stampCard.balance }} stempel</span
         >
       </p>
     </div>
@@ -52,11 +47,11 @@ const gridCols = computed(() => {
 
     <p class="text-sm">
       <span class="font-semibold"
-        >{{ props.stampCard.willVoidSoon.stamps }} stempel</span
+        >{{ stampCard.willVoidSoon.stamps }} stempel</span
       >
       akan hangus pada
       <span class="font-semibold">{{
-        props.stampCard.willVoidSoon.voidAt.toDateString()
+        stampCard.willVoidSoon.voidAt.toDateString()
       }}</span>
     </p>
   </div>

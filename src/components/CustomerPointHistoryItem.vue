@@ -1,26 +1,26 @@
 <script setup>
-const props = defineProps([
-  "isGain",
-  "type",
-  "amount",
-  "date",
-  "programName",
-  "programImg",
-]);
+defineProps({
+  isGain: Boolean,
+  type: {
+    validator: (value) => ["stamp", "point"].includes(value),
+  },
+  amount: Number,
+  date: Date,
+  programName: String,
+  programImg: String,
+});
 </script>
 <template>
   <div
     class="flex items-center gap-2 p-3 border border-lightGray rounded-md shadow-cardShadow"
   >
-    <img class="w-9 h-9" :src="props.programImg" :alt="props.programName" />
+    <img class="w-9 h-9" :src="programImg" :alt="programName" />
     <div>
-      <p class="text-lg font-semibold">{{ props.programName }}</p>
+      <p class="text-lg font-semibold">{{ programName }}</p>
       <p>
-        <span class="font-medium"
-          >{{ props.isGain ? "+" : "-" }}{{ props.amount }}</span
-        >
-        {{ props.type === "stamp" ? "Stempel" : "Poin" }} •
-        <span class="text-xs text-gray">{{ props.date.toDateString() }}</span>
+        <span class="font-medium">{{ isGain ? "+" : "-" }}{{ amount }}</span>
+        {{ type === "stamp" ? "Stempel" : "Poin" }} •
+        <span class="text-xs text-gray">{{ date.toDateString() }}</span>
       </p>
     </div>
   </div>

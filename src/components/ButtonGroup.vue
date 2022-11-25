@@ -1,6 +1,13 @@
 <script setup>
-const props = defineProps(["active", "leftText", "rightText"]);
-const emits = defineEmits(["leftClick", "rightClick"]);
+defineProps({
+  active: {
+    validator: (value) => ["left", "right"].includes(value),
+  },
+  leftText: String,
+  rightText: String,
+});
+
+defineEmits(["leftClick", "rightClick"]);
 </script>
 
 <template>
@@ -8,16 +15,16 @@ const emits = defineEmits(["leftClick", "rightClick"]);
     <button
       @click="$emit('leftClick')"
       class="basis-1/2 rounded-l-full border-2 border-solid border-biru2 text-center py-1 text-white font-medium"
-      :class="[props.active == 'left' ? 'bg-biru2' : 'bg-white text-biru2']"
+      :class="[active == 'left' ? 'bg-biru2' : 'bg-white text-biru2']"
     >
-      {{ props.leftText }}
+      {{ leftText }}
     </button>
     <button
       @click="$emit('rightClick')"
       class="basis-1/2 rounded-r-full border-2 border-solid border-biru2 text-center py-1 text-white font-medium"
-      :class="[props.active == 'right' ? 'bg-biru2' : 'bg-white text-biru2']"
+      :class="[active == 'right' ? 'bg-biru2' : 'bg-white text-biru2']"
     >
-      {{ props.rightText }}
+      {{ rightText }}
     </button>
   </div>
 </template>

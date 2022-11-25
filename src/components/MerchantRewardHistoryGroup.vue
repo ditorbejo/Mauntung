@@ -1,7 +1,7 @@
 <script setup>
 import RewardHistoryItem from "./MerchantRewardHistoryItem.vue";
 
-const props = defineProps(["histories"]);
+const props = defineProps({ histories: Array });
 const monthNames = [
   "January",
   "February",
@@ -33,8 +33,8 @@ const formatedDate = `${day} ${nickMonth} ${year}`;
     <div class="flex flex-col gap-3 mt-3 px-7.5">
       <RewardHistoryItem
         v-for="(history, index) in histories"
-        :name-reward="history.nameReward"
-        :url-image="history.urlImage"
+        :reward-name="history.rewardName"
+        :customer-img="history.customerImg"
         :customer-name="history.customerName"
         :date="history.date"
         :key="index"

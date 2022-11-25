@@ -1,6 +1,9 @@
 <script setup>
-const props = defineProps(["actionName"]);
-const emits = defineEmits(["buttonClick"]);
+defineProps({
+  actionName: String,
+});
+
+defineEmits(["buttonClick"]);
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const emits = defineEmits(["buttonClick"]);
       class="btn btn-primary btn-rounded btn-base"
       @click="$emit('buttonClick')"
     >
-      {{ props.actionName }}
+      {{ actionName }}
     </button>
   </div>
 </template>

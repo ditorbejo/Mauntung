@@ -26,7 +26,7 @@ const basePointStorage = useBasePointStore();
       </div>
       <GeneratedPoinCode
         class="w-full"
-        :base-poin="basePointStorage.basePoint"
+        :base-point="basePointStorage.basePoint"
         :expired-at="new Date()"
         :ttl="90"
       ></GeneratedPoinCode>

@@ -1,9 +1,13 @@
 <script setup>
-const props = defineProps(["urlImage", "nameReward", "customerName", "date"]);
+const props = defineProps({
+  rewardName: String,
+  customerImg: String,
+  customerName: String,
+  date: Date,
+});
 
-const date = props.date;
-const hours = date.getHours();
-const minutes = date.getMinutes().toString();
+const hours = props.date.getHours();
+const minutes = props.date.getMinutes().toString();
 let formatedTime;
 if (hours < 13) {
   formatedTime = `${hours}:${minutes} AM`;
@@ -17,11 +21,11 @@ if (hours < 13) {
     class="flex flex-col gap-1 p-3 border border-lightGray rounded-md shadow-cardShadow"
   >
     <div>
-      <p class="font-semibold">{{ props.nameReward }}</p>
+      <p class="font-semibold">{{ rewardName }}</p>
     </div>
     <div class="flex gap-1">
-      <img :src="props.urlImage" alt="" />
-      <p>{{ props.customerName }}</p>
+      <img class="w-6 h-6" :src="customerImg" :alt="customerName" />
+      <p>{{ customerName }}</p>
       •
       <span class="text-gray">{{ formatedTime }}</span>
     </div>

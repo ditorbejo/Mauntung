@@ -133,6 +133,7 @@ const active = ref("left");
               program-type="point"
               program-img="https://via.placeholder.com/48"
               :total-point="10"
+              :claimable-rewards="2"
             />
           </RouterLink>
         </div>

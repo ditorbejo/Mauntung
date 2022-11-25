@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
-const props = defineProps(["icon", "label", "routeName"]);
+const props = defineProps({ icon: String, label: String, routeName: String });
 const isActive = ref(false);
 const route = useRoute();
 
@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <RouterLink :to="{ name: props.routeName }">
+  <RouterLink :to="{ name: routeName }">
     <div
       class="flex flex-col items-center justify-between w-12 h-12"
       :class="[isActive ? 'text-biru2 font-semibold' : 'text-biru1']"
@@ -31,10 +31,10 @@ onMounted(() => {
         <span
           class="material-symbols-rounded text-center"
           :class="[isActive ? 'text-white' : '']"
-          >{{ props.icon }}</span
+          >{{ icon }}</span
         >
       </div>
-      <span class="text-xs font-medium">{{ props.label }}</span>
+      <span class="text-xs font-medium">{{ label }}</span>
     </div>
   </RouterLink>
 </template>

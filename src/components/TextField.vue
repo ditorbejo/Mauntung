@@ -1,15 +1,18 @@
 <script setup>
-const props = defineProps([
-  "label",
-  "placeholder",
-  "typeInput",
-  "nameInput",
-  "id",
-  "value",
-  "disabled",
-]);
+const props = defineProps({
+  label: String,
+  placeholder: String,
+  typeInput: {
+    validator: (value) =>
+      ["text", "number", "email", "password"].includes(value),
+  },
+  nameInput: String,
+  id: String,
+  value: String,
+  disabled: Boolean,
+});
 
-const emit = defineEmits(["change"]);
+defineEmits(["change"]);
 
 const formatInputOnFocus = (event) => {
   if (props.typeInput === "number") {
@@ -32,17 +35,17 @@ const formatInputOnBlur = (event) => {
 
 <template>
   <div class="flex flex-col gap-2">
-    <label class="font-medium" for="">{{ props.label }}</label>
+    <label class="font-medium" for="">{{ label }}</label>
     <input
       @input="(event) => $emit('change', event)"
       class="flex items-center px-3 py-3 border border-solid rounded-lg border-lightGray"
-      :type="props.typeInput"
-      :name="props.nameInput"
-      :placeholder="props.placeholder"
-      :id="props.id"
-      :value="props.value"
-      :disabled="props.disabled"
-      :class="[props.disabled ? 'bg-lightGray text-gray' : 'text-biru1']"
+      :type="typeInput"
+      :name="nameInput"
+      :placeholder="placeholder"
+      :id="id"
+      :value="value"
+      :disabled="disabled"
+      :class="[disabled ? 'bg-lightGray text-gray' : 'text-biru1']"
       @focus="(event) => formatInputOnFocus(event)"
       @blur="(event) => formatInputOnBlur(event)"
     />

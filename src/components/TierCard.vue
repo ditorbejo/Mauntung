@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 
-const props = defineProps(["tier"]);
+const props = defineProps({ tier: Object });
 const gridCols = computed(() => {
   return props.tier.tiers.length * 2 - 1;
 });

@@ -3,8 +3,13 @@ import { ref } from "vue";
 import TextField from "./TextField.vue";
 import { useBasePointStore } from "@/stores/basePoint";
 
-const props = defineProps(["useNominal", "topLabel"]);
-const emit = defineEmits(["generateCodeClick"]);
+defineProps({
+  useNominal: Boolean,
+  topLabel: String,
+});
+
+defineEmits(["generateCodeClick"]);
+
 const basePoint = ref(0);
 const basePointStorage = useBasePointStore();
 const calculateBasePoint = (event) => {
@@ -21,7 +26,7 @@ const calculateBasePoint = (event) => {
     <div class="flex flex-col gap-2.5">
       <TextField
         @change="calculateBasePoint"
-        v-if="props.useNominal"
+        v-if="useNominal"
         :label="topLabel"
         type-input="number"
         name-input="nominal"

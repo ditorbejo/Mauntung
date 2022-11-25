@@ -1,7 +1,7 @@
 <script setup>
 import PointHistoryItem from "./MerchantPointHistoryItem.vue";
 
-const props = defineProps(["histories"]);
+const props = defineProps({ histories: Array });
 const monthNames = [
   "January",
   "February",

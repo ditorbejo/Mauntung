@@ -29,6 +29,7 @@ import BaseLayout from "../../../layouts/BaseLayout.vue";
             program-type="point"
             program-img="https://via.placeholder.com/48"
             :total-point="10"
+            :claimable-rewards="2"
           />
         </RouterLink>
       </div>

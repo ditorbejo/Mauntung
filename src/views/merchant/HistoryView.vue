@@ -25,26 +25,26 @@ const pointHistories = [
 
 const rewardHistories = [
   {
-    urlImage: "https://via.placeholder.com/24",
-    nameReward: "1x Cuci Baju",
+    customerImg: "https://via.placeholder.com/24",
+    rewardName: "1x Cuci Baju",
     customerName: "Budi",
     date: new Date(2022, 10, 1, 9, 55),
   },
   {
-    urlImage: "https://via.placeholder.com/24",
-    nameReward: "1x Cuci Baju",
+    customerImg: "https://via.placeholder.com/24",
+    rewardName: "1x Cuci Baju",
     customerName: "Joni",
     date: new Date(2022, 10, 1, 9, 55),
   },
   {
-    urlImage: "https://via.placeholder.com/24",
-    nameReward: "1x Cuci Baju",
+    customerImg: "https://via.placeholder.com/24",
+    rewardName: "1x Cuci Baju",
     customerName: "Adu",
     date: new Date(2022, 10, 1, 9, 55),
   },
   {
-    urlImage: "https://via.placeholder.com/24",
-    nameReward: "1x Cuci Baju",
+    customerImg: "https://via.placeholder.com/24",
+    rewardName: "1x Cuci Baju",
     customerName: "Popo",
     date: new Date(2022, 10, 1, 9, 55),
   },

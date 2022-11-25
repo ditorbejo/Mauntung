@@ -1,6 +1,15 @@
 <script setup>
-const props = defineProps(["name", "type", "value", "date", "programImg"]);
-const type = {
+const props = defineProps({
+  name: String,
+  type: {
+    validator: (value) => ["stamp", "point"].includes(value),
+  },
+  value: Number,
+  date: Date,
+  programImg: String,
+});
+
+const types = {
   point: "Poin",
   stamp: "Stempel",
 };
@@ -15,15 +24,11 @@ const formattedDate = `${year}-${month}-${day}`;
   <div
     class="flex p-3 items-center border-lightGray rounded-md shadow-cardShadow"
   >
-    <img
-      class="w-10 h-10 object cover"
-      :src="props.programImg"
-      alt="point-card"
-    />
+    <img class="w-10 h-10 object cover" :src="programImg" alt="point-card" />
     <div class="ml-3">
-      <p class="text-lg font-semibold mb-1">{{ props.name }}</p>
+      <p class="text-lg font-semibold mb-1">{{ name }}</p>
       <p>
-        {{ props.value }} {{ type[props.type] }} •
+        {{ value }} {{ types[type] }} •
         <span class="text-sm text-gray">{{ formattedDate }}</span>
       </p>
     </div>

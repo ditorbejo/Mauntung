@@ -1,14 +1,17 @@
 <script setup>
-const props = defineProps(["basePoint", "nominal", "date"]);
+const props = defineProps({
+  basePoint: Number,
+  nominal: Number,
+  date: Date,
+});
 
-const date = props.date;
-const hours = date.getHours();
-const minutes = date.getMinutes().toString();
+const hours = props.date.getHours();
+const minutes = props.date.getMinutes().toString();
 let formatedTime;
 if (hours < 13) {
   formatedTime = `${hours}:${minutes} AM`;
 } else {
-    formatedTime = `${hours-12}:${minutes} PM`
+  formatedTime = `${hours - 12}:${minutes} PM`;
 }
 </script>
 
@@ -16,9 +19,9 @@ if (hours < 13) {
   <div
     class="flex flex-col gap-1 p-3 border border-lightGray rounded-md shadow-cardShadow"
   >
-    <div class="font-semibold">{{ props.basePoint }} Poin</div>
+    <div class="font-semibold">{{ basePoint }} Poin</div>
     <div>
-      {{ props.nominal }} • <span class="text-gray">{{ formatedTime }}</span>
+      {{ nominal }} • <span class="text-gray">{{ formatedTime }}</span>
     </div>
   </div>
 </template>

@@ -1,6 +1,10 @@
 <script setup>
-const props = defineProps(["icon", "title"]);
-const emits = defineEmits(["buttonClick"]);
+defineProps({
+  icon: String,
+  title: String,
+});
+
+defineEmits(["buttonClick"]);
 </script>
 
 <template>
@@ -12,10 +16,10 @@ const emits = defineEmits(["buttonClick"]);
       @click="$emit('buttonClick')"
     >
       <span class="material-symbols-rounded text-white text-base leading-none">
-        {{ props.icon }}
+        {{ icon }}
       </span>
     </button>
 
-    <h1 class="font-medium">{{ props.title }}</h1>
+    <h1 class="font-medium">{{ title }}</h1>
   </header>
 </template>

@@ -1,7 +1,9 @@
 <script setup>
 import CustomerPointHistoryItem from "./CustomerPointHistoryItem.vue";
 
-const props = defineProps(["histories"]);
+defineProps({
+  histories: Array,
+});
 </script>
 
 <template>

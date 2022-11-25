@@ -1,14 +1,17 @@
 <script setup>
-import { onMounted, onUpdated, ref } from "vue";
-const props = defineProps(["isOpen"]);
-const isOpen = ref(props.isOpen);
-const popupModalBackground = ref(null);
+import { onMounted, ref } from "vue";
+
+defineProps({ isOpen: Boolean });
+
 const emit = defineEmits(["modalClose"]);
+
+const popupModalBackground = ref(null);
 const closeModal = (event) => {
   if (event.target.id === "popupModalBackground") {
     emit("modalClose");
   }
 };
+
 onMounted(() => {
   const dismissElements = popupModalBackground.value.querySelectorAll(
     '[data-dismiss="modal"]'
@@ -21,7 +24,7 @@ onMounted(() => {
 
 <template>
   <div
-    v-show="props.isOpen"
+    v-show="isOpen"
     @click="(event) => closeModal(event)"
     class="fixed inset-0 bg-black z-50 bg-opacity-60"
     id="popupModalBackground"

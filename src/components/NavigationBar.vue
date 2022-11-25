@@ -1,10 +1,9 @@
 <script setup>
 import NavigationItem from "./NavigationItem.vue";
 import { useRoute } from "vue-router";
-import { onMounted, reactive, ref, watch } from "vue";
+import { onMounted, reactive } from "vue";
 const route = useRoute();
 const state = reactive({ navItems: [] });
-const showNavbar = ref(false);
 const navItems = {
   merchant: [
     {
@@ -51,16 +50,6 @@ const navItems = {
     },
   ],
 };
-
-// watch(
-//   () => route.meta,
-//   (toMeta, beforeMeta) => {
-//     if (toMeta.role !== beforeMeta.role) {
-//       state.navItems = navItems[toMeta.role];
-//     }
-//     showNavbar.value = toMeta.showNavbar;
-//   }
-// );
 
 onMounted(() => {
   state.navItems = navItems[route.meta.role];

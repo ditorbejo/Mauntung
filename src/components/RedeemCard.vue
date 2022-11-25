@@ -1,11 +1,11 @@
 <script setup>
-const props = defineProps([
-  "rewardName",
-  "isUsed",
-  "date",
-  "programImg",
-  "programName",
-]);
+const props = defineProps({
+  rewardName: String,
+  isUsed: Boolean,
+  date: Date,
+  programImg: String,
+  programName: String,
+});
 
 const validity = (() => {
   if (props.isUsed) {
@@ -44,16 +44,16 @@ const validity = (() => {
     <div
       class="flex-1 p-3 flex flex-col items-center justify-center text-center"
     >
-      <p class="text-lg text-biru1 font-semibold">{{ props.rewardName }}</p>
+      <p class="text-lg text-biru1 font-semibold">{{ rewardName }}</p>
       <p class="text-sm text-gray">{{ validity }}</p>
     </div>
     <div class="border-l border-lightGray border-dashed divider"></div>
     <div
       class="flex-1 p-3 flex flex-col items-center justify-center text-center"
     >
-      <img :src="props.programImg" alt="" class="w-12 h-12 object-cover" />
+      <img :src="programImg" alt="" class="w-12 h-12 object-cover" />
       <p class="text-lg text-biru1 font-semibold">
-        {{ props.programName }}
+        {{ programName }}
       </p>
     </div>
   </div>
