@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "img": "https://via.placeholder.com/300x150",
+      "name": "Laundree",
+      "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership"
+      },
+      "isMember": false
+    },
+    {
+      "id": 2,
+      "img": "https://via.placeholder.com/300x150",
+      "name": "Laundree",
+      "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership"
+      },
+      "isMember": false
+    },
+    {
+      "id": 3,
+      "img": "https://via.placeholder.com/300x150",
+      "name": "Laundree",
+      "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership"
+      },
+      "isMember": false
+    },
+    {
+      "id": 4,
+      "img": "https://via.placeholder.com/300x150",
+      "name": "Laundree",
+      "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership"
+      },
+      "isMember": false
+    },
+    {
+      "id": 5,
+      "img": "https://via.placeholder.com/300x150",
+      "name": "Laundree",
+      "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership"
+      },
+      "isMember": false
+    }
+  ]
+}

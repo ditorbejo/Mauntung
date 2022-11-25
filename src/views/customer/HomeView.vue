@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, nextTick, onMounted, ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import NearbyCarousel from "@/components/NearbyCarousel.vue";
 import ButtonGroup from "@/components/ButtonGroup.vue";
@@ -7,6 +7,7 @@ import PointCard from "@/components/PointCard.vue";
 import RedeemCard from "@/components/RedeemCard.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
 import BaseLayout from "../../layouts/BaseLayout.vue";
+import { useNearbyBrandsStore } from "../../stores/nearbyBrands";
 
 const router = useRouter();
 
@@ -59,6 +60,18 @@ const redeemCards = [
 ];
 
 const active = ref("left");
+
+const stores = {
+  nearbyBrands: useNearbyBrandsStore(),
+};
+
+const nearbyBrandSlides = computed(() =>
+  stores.nearbyBrands.nearbyBrands.map((brand) => ({ image: brand.img }))
+);
+
+onMounted(async () => {
+  await stores.nearbyBrands.fetchNearbyBrands();
+});
 </script>
 
 <template>
@@ -73,7 +86,7 @@ const active = ref("left");
 
       <section id="nearby-brands">
         <h2 class="text-lg font-semibold mb-2">Brand di sekitarmu</h2>
-        <NearbyCarousel />
+        <NearbyCarousel :slides="nearbyBrandSlides" />
       </section>
 
       <section class="mt-8" id="recent-activites">

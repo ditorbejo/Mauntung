@@ -2,23 +2,9 @@
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 
-const slides = [
-  {
-    image: "https://via.placeholder.com/300x150",
-  },
-  {
-    image: "https://via.placeholder.com/300x150",
-  },
-  {
-    image: "https://via.placeholder.com/300x150",
-  },
-  {
-    image: "https://via.placeholder.com/300x150",
-  },
-  {
-    image: "https://via.placeholder.com/300x150",
-  },
-];
+defineProps({
+  slides: Array,
+});
 </script>
 
 <template>
