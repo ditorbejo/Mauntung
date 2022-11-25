@@ -14,7 +14,10 @@ import { RouterLink } from "vue-router";
         <RouterLink
           v-for="index in 10"
           :key="index"
-          :to="{ name: 'customer-membership-detail', params: { id: index } }"
+          :to="{
+            name: 'customer-membership-detail',
+            params: { membership: index },
+          }"
         >
           <MembershipProgramCard
             :is-merchant="false"

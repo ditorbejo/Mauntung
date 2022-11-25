@@ -3,7 +3,9 @@ import AppBar from "@/components/AppBar.vue";
 import RedeemCard from "@/components/RedeemCard.vue";
 import RewardCard from "../../../components/RewardCard.vue";
 import TierCard from "@/components/TierCard.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
 
 const tier = {
   tiers: [
@@ -147,12 +149,20 @@ const featuredRedeems = [
         </div>
 
         <div class="flex gap-3 overflow-x-auto px-7.5 py-1">
-          <RewardCard
+          <RouterLink
             v-for="reward in featuredRewards"
             class="flex-none max-w-[9rem]"
-            v-bind="reward"
             :key="reward.id"
-          />
+            :to="{
+              name: 'customer-membership-rewards-detail',
+              params: {
+                membership: route.params.membership,
+                reward: reward.id,
+              },
+            }"
+          >
+            <RewardCard v-bind="reward" />
+          </RouterLink>
         </div>
       </section>
 

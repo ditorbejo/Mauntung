@@ -1,7 +1,10 @@
 <script setup>
 import AppBar from "@/components/AppBar.vue";
 import TextField from "@/components/TextField.vue";
+import { RouterLink, useRoute } from "vue-router";
 import RewardCard from "../../../components/RewardCard.vue";
+
+const route = useRoute();
 
 const rewards = [
   {
@@ -61,11 +64,19 @@ const rewards = [
     <div class="pt-5 px-7.5">
       <TextField placeholder="Cari reward..." type-input="text" />
       <div class="grid grid-cols-2 items-center gap-4 mt-8">
-        <RewardCard
+        <RouterLink
           v-for="reward in rewards"
-          v-bind="reward"
           :key="reward.id"
-        />
+          :to="{
+            name: 'customer-membership-rewards-detail',
+            params: {
+              membership: route.params.membership,
+              reward: reward.id,
+            },
+          }"
+        >
+          <RewardCard v-bind="reward" />
+        </RouterLink>
       </div>
     </div>
   </main>
