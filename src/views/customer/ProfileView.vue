@@ -43,7 +43,7 @@ const menus = [
     app-bar-icon="arrow_back"
     title="Profil"
   >
-    <div class="flex gap-2 py-4 items-center shadow-cardShadow">
+    <div class="flex gap-2 py-4 items-center shadow-cardShadow -mt-5">
       <div class="px-4 py-5.5">
         <img class="w-20 h-20" :src="customer.img" :alt="customer.name" />
       </div>
