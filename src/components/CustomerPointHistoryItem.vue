@@ -1,6 +1,5 @@
 <script setup>
 defineProps({
-  isGain: Boolean,
   type: {
     validator: (value) => ["stamp", "point"].includes(value),
   },
@@ -18,7 +17,7 @@ defineProps({
     <div>
       <p class="text-lg font-semibold">{{ programName }}</p>
       <p>
-        <span class="font-medium">{{ isGain ? "+" : "-" }}{{ amount }}</span>
+        <span class="font-medium">{{ amount > 0 ? "+" : "" }}{{ amount }}</span>
         {{ type === "stamp" ? "Stempel" : "Poin" }} •
         <span class="text-xs text-gray">{{ date.toDateString() }}</span>
       </p>

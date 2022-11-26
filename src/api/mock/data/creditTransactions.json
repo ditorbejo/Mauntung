@@ -1,0 +1,100 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership",
+        "type": "stamp",
+        "point": null,
+        "stamp": -1,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-10T15:00:00Z"
+    },
+    {
+      "id": 2,
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "type": "point",
+        "point": -3,
+        "stamp": null,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-10T12:00:00Z"
+    },
+    {
+      "id": 3,
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "type": "point",
+        "point": -3,
+        "stamp": null,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-09T16:00:00Z"
+    },
+    {
+      "id": 4,
+      "membership": {
+        "id": 3,
+        "name": "Supermaret Membership",
+        "type": "point",
+        "point": -10,
+        "stamp": null,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-09T13:00:00Z"
+    },
+    {
+      "id": 5,
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership",
+        "type": "stamp",
+        "point": null,
+        "stamp": -1,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-09T10:00:00Z"
+    },
+    {
+      "id": 6,
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "type": "point",
+        "point": -3,
+        "stamp": null,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-08T17:00:00Z"
+    },
+    {
+      "id": 7,
+      "membership": {
+        "id": 3,
+        "name": "Supermaret Membership",
+        "type": "point",
+        "point": -10,
+        "stamp": null,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-08T12:00:00Z"
+    },
+    {
+      "id": 8,
+      "membership": {
+        "id": 1,
+        "name": "Laundree",
+        "type": "stamp",
+        "point": null,
+        "stamp": -1,
+        "img": "https://via.placeholder.com/36"
+      },
+      "createdAt": "2022-11-07T13:00:00Z"
+    }
+  ]
+}

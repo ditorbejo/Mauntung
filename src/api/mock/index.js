@@ -1,5 +1,6 @@
 import nearbyBrands from "./data/nearbyBrands.json";
 import debitTransactions from "./data/debitTransactions.json";
+import creditTransactions from "./data/creditTransactions.json";
 import redeems from "./data/redeems.json";
 import memberships from "./data/memberships.json";
 
@@ -23,9 +24,17 @@ const listNearbyBrands = () => {
   return fetch(nearbyBrands, 1000);
 };
 
+const listDebitTransactions = () => {
+  return fetch(debitTransactions, 2000);
+};
+
 const listRecentDebitTransactions = () => {
   const recentTransactions = { data: debitTransactions.data.slice(0, 3) };
   return fetch(recentTransactions, 1500);
+};
+
+const listCreditTransactions = () => {
+  return fetch(creditTransactions, 2000);
 };
 
 const listRecentRedeems = () => {
@@ -44,7 +53,9 @@ const listMemberships = () => {
 
 export default {
   listNearbyBrands,
+  listDebitTransactions,
   listRecentDebitTransactions,
+  listCreditTransactions,
   listRecentRedeems,
   listRecentMemberships,
   listMemberships,

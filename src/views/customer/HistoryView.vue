@@ -1,64 +1,50 @@
 <script setup>
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import ButtonGroup from "../../components/ButtonGroup.vue";
 import CustomerPointHistoryGroup from "../../components/CustomerPointHistoryGroup.vue";
 import BaseLayout from "../../layouts/BaseLayout.vue";
+import { useLoadingStore } from "@/stores/loading";
+import { useTransactionsStore } from "@/stores/transactions";
 
-const claimedPoints = [
-  {
-    programName: "Laundree",
-    programImg: "https://via.placeholder.com/30",
-    type: "stamp",
-    amount: 1,
-    date: new Date(2022, 10, 1),
-    isGain: true,
-  },
-  {
-    programName: "KopiQue",
-    programImg: "https://via.placeholder.com/30",
-    type: "point",
-    amount: 10,
-    date: new Date(2022, 10, 1),
-    isGain: true,
-  },
-  {
-    programName: "Laundree",
-    programImg: "https://via.placeholder.com/30",
-    type: "stamp",
-    amount: 1,
-    date: new Date(2022, 10, 1),
-    isGain: true,
-  },
-];
+const loadingStore = useLoadingStore();
+const transactionsStore = useTransactionsStore();
 
-const redeemedPoints = [
-  {
-    programName: "Laundree",
-    programImg: "https://via.placeholder.com/30",
-    type: "stamp",
-    amount: 1,
-    date: new Date(2022, 10, 1),
-    isGain: false,
-  },
-  {
-    programName: "KopiQue",
-    programImg: "https://via.placeholder.com/30",
-    type: "point",
-    amount: 10,
-    date: new Date(2022, 10, 1),
-    isGain: false,
-  },
-  {
-    programName: "Laundree",
-    programImg: "https://via.placeholder.com/30",
-    type: "stamp",
-    amount: 1,
-    date: new Date(2022, 10, 1),
-    isGain: false,
-  },
-];
+const mapTransactionToProps = ({ id, membership, createdAt }) => ({
+  id,
+  programName: membership.name,
+  programImg: membership.img,
+  type: membership.type,
+  amount: membership[membership.type],
+  date: new Date(createdAt),
+});
+
+const groupByDate = (transactions) => {
+  return transactions.reduce((group, transaction) => {
+    const createdAt = transaction.createdAt.split("T")[0];
+    group[createdAt] = group[createdAt] ?? [];
+    group[createdAt].push(mapTransactionToProps(transaction));
+    return group;
+  }, {});
+};
+
+const claimedPoints = computed(() =>
+  groupByDate(transactionsStore.debitTransactions)
+);
+
+const redemeedPoints = computed(() =>
+  groupByDate(transactionsStore.creditTransactions)
+);
 
 const active = ref("left");
+
+onMounted(async () => {
+  loadingStore.showLoading();
+  await Promise.all([
+    transactionsStore.fetchDebitTransactions(),
+    transactionsStore.fetchCreditTransactions(),
+  ]);
+  loadingStore.hideLoading();
+});
 </script>
 
 <template>
@@ -78,12 +64,20 @@ const active = ref("left");
         right-text="Penukaran"
       />
       <div v-show="active == 'left'" class="flex flex-col gap-6">
-        <CustomerPointHistoryGroup :histories="claimedPoints" />
-        <CustomerPointHistoryGroup :histories="claimedPoints" />
+        <CustomerPointHistoryGroup
+          v-for="(histories, date) in claimedPoints"
+          :histories="histories"
+          :date="new Date(date)"
+          :key="date"
+        />
       </div>
       <div v-show="active == 'right'" class="flex flex-col gap-6">
-        <CustomerPointHistoryGroup :histories="redeemedPoints" />
-        <CustomerPointHistoryGroup :histories="redeemedPoints" />
+        <CustomerPointHistoryGroup
+          v-for="(histories, date) in redemeedPoints"
+          :histories="histories"
+          :date="new Date(date)"
+          :key="date"
+        />
       </div>
     </div>
   </BaseLayout>
