@@ -2,58 +2,28 @@
 import TextField from "../../components/TextField.vue";
 import RedeemCard from "../../components/RedeemCard.vue";
 import BaseLayout from "../../layouts/BaseLayout.vue";
+import { useLoadingStore } from "../../stores/loading";
+import { useRedeemsStore } from "../../stores/redeems";
+import { computed, onMounted } from "vue";
 
-const redeemCards = [
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: true,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-];
+const loadingStore = useLoadingStore();
+const redeemsStore = useRedeemsStore();
+
+const redeemCards = computed(() =>
+  redeemsStore.redeems.map(({ name, membership, isRedeemed, expiredAt }) => ({
+    rewardName: name,
+    isUsed: isRedeemed,
+    date: new Date(expiredAt),
+    programImg: membership.img,
+    programName: membership.name,
+  }))
+);
+
+onMounted(async () => {
+  loadingStore.showLoading();
+  await redeemsStore.fetchRedeems();
+  loadingStore.hideLoading();
+});
 </script>
 
 <template>

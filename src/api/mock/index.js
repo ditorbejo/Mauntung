@@ -37,6 +37,10 @@ const listCreditTransactions = () => {
   return fetch(creditTransactions, 2000);
 };
 
+const listRedeems = () => {
+  return fetch(redeems, 2000);
+};
+
 const listRecentRedeems = () => {
   const recentRedeems = { data: redeems.data.slice(0, 3) };
   return fetch(recentRedeems, 2000);
@@ -56,6 +60,7 @@ export default {
   listDebitTransactions,
   listRecentDebitTransactions,
   listCreditTransactions,
+  listRedeems,
   listRecentRedeems,
   listRecentMemberships,
   listMemberships,
