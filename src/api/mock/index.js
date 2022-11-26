@@ -38,9 +38,14 @@ const listRecentMemberships = () => {
   return fetch(recentMemberships, 2000);
 };
 
+const listMemberships = () => {
+  return fetch(memberships, 2000);
+};
+
 export default {
   listNearbyBrands,
   listRecentDebitTransactions,
   listRecentRedeems,
   listRecentMemberships,
+  listMemberships,
 };
