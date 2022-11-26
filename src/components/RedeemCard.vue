@@ -26,7 +26,7 @@ const validity = (() => {
 </script>
 
 <template>
-  <div class="container relative flex items-center">
+  <div class="container relative grid grid-cols-2">
     <svg
       width="300"
       height="95"
@@ -42,17 +42,23 @@ const validity = (() => {
       />
     </svg>
     <div
-      class="flex-1 p-3 flex flex-col items-center justify-center text-center"
+      class="p-3 flex flex-col items-center justify-center text-center place-items-center"
     >
-      <p class="text-lg text-biru1 font-semibold">{{ rewardName }}</p>
-      <p class="text-sm text-gray">{{ validity }}</p>
+      <p
+        class="text-lg text-biru1 font-semibold max-w-full line-clamp-2 leading-tight"
+      >
+        {{ rewardName }}
+      </p>
+      <p class="text-sm text-gray mt-1">{{ validity }}</p>
     </div>
-    <div class="border-l border-lightGray border-dashed divider"></div>
     <div
-      class="flex-1 p-3 flex flex-col items-center justify-center text-center"
+      class="border-l border-lightGray border-dashed divider absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    ></div>
+    <div
+      class="py-3 px-5 flex flex-col items-center justify-center text-center place-items-center"
     >
       <img :src="programImg" alt="" class="w-12 h-12 object-cover" />
-      <p class="text-lg text-biru1 font-semibold">
+      <p class="text-lg text-biru1 font-semibold truncate max-w-full">
         {{ programName }}
       </p>
     </div>

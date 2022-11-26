@@ -1,0 +1,76 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "1 Kali Cuci Gratis",
+      "membership": {
+        "id": 1,
+        "name": "Laundree Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-20T10:30:00Z",
+      "redeemedAt": null
+    },
+    {
+      "id": 2,
+      "name": "Cappucino",
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-20T10:30:00Z",
+      "redeemedAt": null
+    },
+    {
+      "id": 3,
+      "name": "Diskon 10% All Items",
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-15T10:30:00Z",
+      "redeemedAt": null
+    },
+    {
+      "id": 4,
+      "name": "Tebus Murah 5k",
+      "membership": {
+        "id": 3,
+        "name": "Supermaret Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-14T10:30:00Z",
+      "redeemedAt": null
+    },
+    {
+      "id": 5,
+      "name": "Tebus Murah 10k",
+      "membership": {
+        "id": 3,
+        "name": "Supermaret Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-14T10:30:00Z",
+      "redeemedAt": null
+    },
+    {
+      "id": 6,
+      "name": "Moccachino",
+      "membership": {
+        "id": 2,
+        "name": "KopiQue Membership",
+        "img": "https://via.placeholder.com/36"
+      },
+      "isRedeemed": false,
+      "expiredAt": "2022-12-11T10:30:00Z",
+      "redeemedAt": null
+    }
+  ]
+}

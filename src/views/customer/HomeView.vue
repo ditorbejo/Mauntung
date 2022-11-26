@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import NearbyCarousel from "@/components/NearbyCarousel.vue";
 import ButtonGroup from "@/components/ButtonGroup.vue";
@@ -7,70 +7,72 @@ import PointCard from "@/components/PointCard.vue";
 import RedeemCard from "@/components/RedeemCard.vue";
 import MembershipProgramCard from "@/components/MembershipProgramCard.vue";
 import BaseLayout from "../../layouts/BaseLayout.vue";
+import { useLoadingStore } from "../../stores/loading";
 import { useNearbyBrandsStore } from "../../stores/nearbyBrands";
+import { useTransactionsStore } from "../../stores/transactions";
+import { useRedeemsStore } from "../../stores/redeems";
+import { useMembershipsStore } from "../../stores/memberships";
 
 const router = useRouter();
-
-const pointCards = [
-  {
-    name: "Laundree",
-    value: 1,
-    type: "point",
-    date: new Date(),
-    programImg: "https://via.placeholder.com/40",
-  },
-  {
-    name: "Laundree",
-    value: 1,
-    type: "point",
-    date: new Date(),
-    programImg: "https://via.placeholder.com/40",
-  },
-  {
-    name: "Laundree",
-    value: 1,
-    type: "point",
-    date: new Date(),
-    programImg: "https://via.placeholder.com/40",
-  },
-];
-
-const redeemCards = [
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: true,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-];
 
 const active = ref("left");
 
 const stores = {
+  loading: useLoadingStore(),
   nearbyBrands: useNearbyBrandsStore(),
+  transactions: useTransactionsStore(),
+  redeems: useRedeemsStore(),
+  memberships: useMembershipsStore(),
 };
 
 const nearbyBrandSlides = computed(() =>
   stores.nearbyBrands.nearbyBrands.map((brand) => ({ image: brand.img }))
 );
 
+const pointCards = computed(() =>
+  stores.transactions.recentDebitTransactions.map(
+    ({ membership, createdAt }) => ({
+      name: membership.name,
+      value: membership[membership.type],
+      type: membership.type,
+      date: new Date(createdAt),
+      programImg: membership.img,
+    })
+  )
+);
+
+const redeemCards = computed(() =>
+  stores.redeems.recentRedeems.map(
+    ({ name, membership, isRedeemed, expiredAt }) => ({
+      rewardName: name,
+      isUsed: isRedeemed,
+      date: new Date(expiredAt),
+      programImg: membership.img,
+      programName: membership.name,
+    })
+  )
+);
+
+const membershipCards = computed(() =>
+  stores.memberships.recentMemberships.map((membership) => ({
+    id: membership.id,
+    programName: membership.name,
+    programType: membership.type,
+    programImg: membership.img,
+    totalPoint: membership[membership.type],
+    claimableRewards: membership.redeemableRewards,
+  }))
+);
+
 onMounted(async () => {
-  await stores.nearbyBrands.fetchNearbyBrands();
+  stores.loading.showLoading();
+  await Promise.all([
+    stores.nearbyBrands.fetchNearbyBrands(),
+    stores.transactions.fetchRecentDebitTransactions(),
+    stores.redeems.fetchRecentRedeems(),
+    stores.memberships.fetchRecentMemberships(),
+  ]);
+  stores.loading.hideLoading();
 });
 </script>
 
@@ -133,21 +135,14 @@ onMounted(async () => {
         </div>
         <div class="flex flex-col gap-3">
           <RouterLink
-            v-for="index in 3"
-            :key="index"
+            v-for="card in membershipCards"
+            :key="card.id"
             :to="{
               name: 'customer-membership-detail',
-              params: { membership: index },
+              params: { membership: card.id },
             }"
           >
-            <MembershipProgramCard
-              :is-merchant="false"
-              program-name="Laundree Membership"
-              program-type="point"
-              program-img="https://via.placeholder.com/48"
-              :total-point="10"
-              :claimable-rewards="2"
-            />
+            <MembershipProgramCard :is-merchant="false" v-bind="card" />
           </RouterLink>
         </div>
       </section>

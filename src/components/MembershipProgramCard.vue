@@ -11,8 +11,8 @@ defineProps({
 });
 
 const programTypes = {
-  stamp: "Berbasis Stempel",
-  point: "Berbasis Poin",
+  stamp: "Stempel",
+  point: "Poin",
 };
 </script>
 
@@ -25,7 +25,7 @@ const programTypes = {
       <img class="w-9 h-9 object-cover" :src="programImg" :alt="programName" />
       <div>
         <h3 class="text-lg font-semibold">{{ programName }}</h3>
-        <h4 class="text-sm">{{ programTypes[programType] }}</h4>
+        <h4 class="text-sm">Berbasis {{ programTypes[programType] }}</h4>
       </div>
     </div>
     <button class="bg-biru2 border rounded-xl px-3 py-2 ml-12 text-white">
@@ -46,7 +46,9 @@ const programTypes = {
     <div class="flex flex-col gap-2.5">
       <div>
         <h3 class="text-lg font-semibold">{{ programName }}</h3>
-        <h4 class="text-sm">{{ totalPoint }} Point</h4>
+        <h4 class="text-sm">
+          {{ totalPoint }} {{ programTypes[programType] }}
+        </h4>
       </div>
       <button
         v-if="claimableRewards"

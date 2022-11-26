@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import client from "api-client";
 
-export const useNearbyBrandsStore = defineStore("basePoint", () => {
+export const useNearbyBrandsStore = defineStore("nearbyBrands", () => {
   const nearbyBrands = ref([]);
 
   const fetchNearbyBrands = async () => {
