@@ -5,118 +5,132 @@ import TierCard from "@/components/TierCard.vue";
 import StampCard from "@/components/StampCard.vue";
 import { RouterLink, useRoute } from "vue-router";
 import BaseLayout from "../../../layouts/BaseLayout.vue";
+import { useLoadingStore } from "../../../stores/loading";
+import { useMembershipsStore } from "../../../stores/memberships";
+import { computed, onMounted } from "vue";
 
 const route = useRoute();
+const loadingStore = useLoadingStore();
+const membershipsStore = useMembershipsStore();
 
-const tier = {
-  tiers: [
-    {
-      id: 1,
-      name: "Bronze",
+const tier = computed(() => {
+  if (
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined ||
+    membershipsStore.membershipDetail?.type !== "point"
+  ) {
+    return null;
+  }
+
+  const { point } = membershipsStore.membershipDetail;
+
+  return {
+    tiers: point.tiers.map(({ id, name, pointsRequired }) => ({
+      id,
+      name,
       img: "https://via.placeholder.com/30",
-      minPoints: 0,
+      minPoints: pointsRequired,
+    })),
+    currentTier: {
+      id: point.currentTier.id,
+      name: point.currentTier.name,
+      requiredPoints: point.currentTier.pointsToUpclass,
+      progress: point.currentTier.progress,
+      deadline: new Date(point.currentTier.upclassDeadline),
     },
-    {
-      id: 2,
-      name: "Silver",
-      img: "https://via.placeholder.com/30",
-      minPoints: 100,
+  };
+});
+
+const point = computed(() => {
+  if (
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined ||
+    membershipsStore.membershipDetail?.type !== "point"
+  ) {
+    return null;
+  }
+
+  const { point } = membershipsStore.membershipDetail;
+  return {
+    balance: point.balance,
+    willVoidSoon: {
+      amount: point.willVoidSoon.amount,
+      voidAt: new Date(point.willVoidSoon.voidAt),
     },
-    {
-      id: 3,
-      name: "Gold",
-      img: "https://via.placeholder.com/30",
-      minPoints: 300,
+  };
+});
+
+const featuredRewards = computed(() => {
+  if (
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined
+  ) {
+    return [];
+  }
+
+  return membershipsStore.membershipDetail.featuredRewards.map(
+    ({ id, name, point, stamp, img }) => ({
+      id,
+      name,
+      point,
+      stamp,
+      img,
+    })
+  );
+});
+
+const featuredRedeems = computed(() => {
+  if (
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined
+  ) {
+    return [];
+  }
+
+  return membershipsStore.membershipDetail.featuredRedeems.map(
+    ({ id, name, expiredAt, isRedeemed }) => ({
+      id,
+      rewardName: name,
+      isUsed: isRedeemed,
+      date: new Date(expiredAt),
+      programImg: membershipsStore.membershipDetail.img,
+      programName: membershipsStore.membershipDetail.name,
+    })
+  );
+});
+
+const stampCard = computed(() => {
+  if (
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined ||
+    membershipsStore.membershipDetail?.type !== "stamp"
+  ) {
+    return null;
+  }
+
+  const { stamp } = membershipsStore.membershipDetail;
+
+  return {
+    balance: stamp.balance,
+    willVoidSoon: {
+      stamps: stamp.willVoidSoon.amount,
+      voidAt: new Date(stamp.willVoidSoon.voidAt),
     },
-    {
-      id: 4,
-      name: "Platinum",
-      img: "https://via.placeholder.com/30",
-      minPoints: 500,
-    },
-  ],
-  currentTier: {
-    id: 2,
-    name: "Silver",
-    requiredPoints: 100,
-    progress: 2 / 3,
-    deadline: new Date(2022, 11, 31),
-  },
-};
+    capacity: stamp.capacity,
+  };
+});
 
-const point = {
-  balance: 100,
-  willVoidSoon: {
-    amount: 10,
-    voidAt: new Date(2022, 11, 20),
-  },
-};
+const membershipNotFound = computed(
+  () =>
+    membershipsStore.membershipDetail === null ||
+    membershipsStore.membershipDetail === undefined
+);
 
-const featuredRewards = [
-  {
-    id: 1,
-    name: "1 Kali Cuci Motor Gratis",
-    point: 10,
-    img: "https://via.placeholder.com/64",
-  },
-  {
-    id: 2,
-    name: "1 Kali Cuci Motor Gratis",
-    point: 10,
-    img: "https://via.placeholder.com/64",
-  },
-  {
-    id: 3,
-    name: "1 Kali Cuci Motor Gratis",
-    point: 10,
-    img: "https://via.placeholder.com/64",
-  },
-  {
-    id: 4,
-    name: "1 Kali Cuci Motor Gratis",
-    point: 10,
-    img: "https://via.placeholder.com/64",
-  },
-  {
-    id: 5,
-    name: "1 Kali Cuci Motor Gratis",
-    point: 10,
-    img: "https://via.placeholder.com/64",
-  },
-];
-
-const featuredRedeems = [
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: true,
-    date: new Date(2022, 11, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-  {
-    rewardName: "1 Kali Cuci Gratis",
-    isUsed: false,
-    date: new Date(2022, 10, 1),
-    programImg: "https://via.placeholder.com/36",
-    programName: "Laundree",
-  },
-];
-
-const stampCard = {
-  balance: 5,
-  willVoidSoon: {
-    stamps: 1,
-    voidAt: new Date(2022, 11, 20),
-  },
-  capacity: 10,
-};
+onMounted(async () => {
+  loadingStore.showLoading();
+  await membershipsStore.fetchMembershipDetail(route.params.membership);
+  loadingStore.hideLoading();
+});
 </script>
 
 <template>
@@ -126,10 +140,11 @@ const stampCard = {
     app-bar-icon="arrow_back"
     title="Detail Membership"
   >
-    <div>
+    <div v-if="!loadingStore.isLoading && !membershipNotFound">
       <section class="mx-7.5">
-        <TierCard :tier="tier" />
+        <TierCard v-if="tier" :tier="tier" />
         <div
+          v-if="point"
           class="flex items-center justify-between mt-3 p-4 border border-lightGray shadow-cardShadow bg-white rounded-lg"
         >
           <div class="flex flex-col gap-1">
@@ -144,12 +159,20 @@ const stampCard = {
           </div>
           <p class="text-lg font-semibold">{{ point.balance }}</p>
         </div>
-        <StampCard class="mt-3" :stamp-card="stampCard" />
+        <StampCard v-if="stampCard" :stamp-card="stampCard" />
       </section>
 
       <section class="mt-8">
         <div class="flex justify-between items-center mb-5 mx-7.5">
-          <h2 class="text-lg font-semibold">Tukarkan Poin Anda</h2>
+          <h2 class="text-lg font-semibold">
+            Tukarkan
+            {{
+              membershipsStore?.membershipDetail?.type === "stamp"
+                ? "Stempel"
+                : "Poin"
+            }}
+            Anda
+          </h2>
           <RouterLink :to="{ name: 'customer-membership-rewards' }">
             <button class="flex items-center">
               <span class="text-xs text-biru2 font-semibold mr-2">Semua</span>
@@ -175,8 +198,11 @@ const stampCard = {
               },
             }"
           >
-            <RewardCard v-bind="reward" />
+            <RewardCard v-bind="reward" class="w-36" />
           </RouterLink>
+          <p v-if="featuredRewards.length === 0">
+            Belum Ada Reward Yang Dapat Ditukarkan
+          </p>
         </div>
       </section>
 
@@ -201,8 +227,16 @@ const stampCard = {
             :key="index"
             v-bind="card"
           />
+          <p v-if="featuredRedeems.length === 0">Anda Belum Memiliki Reward</p>
         </div>
       </section>
     </div>
+
+    <h2
+      v-else-if="!loadingStore.isLoading && membershipNotFound"
+      class="text-center text-xl font-semibold"
+    >
+      Not Found
+    </h2>
   </BaseLayout>
 </template>

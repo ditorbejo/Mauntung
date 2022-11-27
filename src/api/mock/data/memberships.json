@@ -4,45 +4,45 @@
       "id": 1,
       "name": "Laundree Membership",
       "img": "https://via.placeholder.com/36",
+      "type": "stamp",
       "point": null,
       "stamp": 10,
-      "type": "stamp",
       "redeemableRewards": 1
     },
     {
       "id": 2,
       "name": "KopiQue Membership",
       "img": "https://via.placeholder.com/36",
+      "type": "point",
       "point": 100,
       "stamp": null,
-      "type": "point",
       "redeemableRewards": 3
     },
     {
       "id": 3,
       "name": "Supermaret Membership",
       "img": "https://via.placeholder.com/36",
+      "type": "point",
       "point": 50,
       "stamp": null,
-      "type": "point",
       "redeemableRewards": 2
     },
     {
       "id": 4,
       "name": "IceKuki Membership",
       "img": "https://via.placeholder.com/36",
+      "type": "stamp",
       "point": null,
       "stamp": 4,
-      "type": "point",
       "redeemableRewards": 3
     },
     {
       "id": 5,
       "name": "Bebek Carok Membership",
       "img": "https://via.placeholder.com/36",
+      "type": "point",
       "point": 10,
       "stamp": null,
-      "type": "point",
       "redeemableRewards": 0
     }
   ]

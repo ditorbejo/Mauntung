@@ -1,5 +1,5 @@
 <script setup>
-defineProps({ name: String, img: String, point: Number });
+defineProps({ name: String, img: String, point: Number, stamp: Number });
 </script>
 
 <template>
@@ -11,7 +11,8 @@ defineProps({ name: String, img: String, point: Number });
       <p class="w-full truncate overflow-x-clip">
         {{ name }}
       </p>
-      <p class="font-medium">{{ point }} Poin</p>
+      <p v-if="point" class="font-medium">{{ point }} Poin</p>
+      <p v-if="stamp" class="font-medium">{{ stamp }} Stempel</p>
     </div>
   </div>
 </template>

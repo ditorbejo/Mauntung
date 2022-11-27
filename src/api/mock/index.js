@@ -3,6 +3,8 @@ import debitTransactions from "./data/debitTransactions.json";
 import creditTransactions from "./data/creditTransactions.json";
 import redeems from "./data/redeems.json";
 import memberships from "./data/memberships.json";
+import membershipDetails from "./data/membershipDetails";
+import membershipRewards from "./data/membershipRewards";
 
 const fetch = (mockData, time = 0) => {
   if (import.meta.env.VITE_MOCK_SIMULATE_LOADING?.toLowerCase() === "true") {
@@ -55,6 +57,16 @@ const listMemberships = () => {
   return fetch(memberships, 2000);
 };
 
+const detailMembership = (id) => {
+  const target = membershipDetails.find((membership) => membership.id == id);
+  return fetch({ data: target }, 2000);
+};
+
+const listMembershipRewards = (id) => {
+  const target = membershipRewards.find((membership) => membership.id == id);
+  return fetch({ data: target ? target.rewards : null }, 2000);
+};
+
 export default {
   listNearbyBrands,
   listDebitTransactions,
@@ -64,4 +76,6 @@ export default {
   listRecentRedeems,
   listRecentMemberships,
   listMemberships,
+  detailMembership,
+  listMembershipRewards,
 };
