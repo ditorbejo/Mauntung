@@ -43,7 +43,8 @@ const pointCards = computed(() =>
 
 const redeemCards = computed(() =>
   stores.redeems.recentRedeems.map(
-    ({ name, membership, isRedeemed, expiredAt }) => ({
+    ({ id, name, membership, isRedeemed, expiredAt }) => ({
+      id,
       rewardName: name,
       isUsed: isRedeemed,
       date: new Date(expiredAt),
@@ -111,11 +112,16 @@ onMounted(async () => {
           v-show="active === 'right'"
           class="flex flex-col gap-3 mt-3 items-center"
         >
-          <RedeemCard
+          <RouterLink
             v-for="(card, index) in redeemCards"
             :key="index"
-            v-bind="card"
-          />
+            :to="{
+              name: 'customer-redeems-detail',
+              params: { redeem: card.id },
+            }"
+          >
+            <RedeemCard v-bind="card" />
+          </RouterLink>
         </div>
       </section>
 

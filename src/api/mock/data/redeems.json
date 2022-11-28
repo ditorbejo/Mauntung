@@ -2,7 +2,7 @@
   "data": [
     {
       "id": 1,
-      "name": "1 Kali Cuci Gratis",
+      "name": "Cuci Mobil Gratis",
       "membership": {
         "id": 1,
         "name": "Laundree Membership",
@@ -38,7 +38,7 @@
     },
     {
       "id": 4,
-      "name": "Tebus Murah 5k",
+      "name": "Tebus Murah Serba 5 Ribu",
       "membership": {
         "id": 3,
         "name": "Supermaret Membership",
@@ -50,7 +50,7 @@
     },
     {
       "id": 5,
-      "name": "Tebus Murah 10k",
+      "name": "Tebus Murah Serba 10 Ribu",
       "membership": {
         "id": 3,
         "name": "Supermaret Membership",

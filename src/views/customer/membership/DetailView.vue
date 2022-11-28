@@ -222,11 +222,16 @@ onMounted(async () => {
         </div>
 
         <div class="flex flex-col gap-3 mt-3 items-center">
-          <RedeemCard
+          <RouterLink
             v-for="(card, index) in featuredRedeems"
             :key="index"
-            v-bind="card"
-          />
+            :to="{
+              name: 'customer-redeems-detail',
+              params: { redeem: card.id },
+            }"
+          >
+            <RedeemCard v-bind="card" />
+          </RouterLink>
           <p v-if="featuredRedeems.length === 0">Anda Belum Memiliki Reward</p>
         </div>
       </section>

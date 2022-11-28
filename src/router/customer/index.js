@@ -75,6 +75,15 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: "redeems/:redeem",
+      name: "redeems-detail",
+      component: () => import("@/views/customer/RedeemDetailView.vue"),
+      meta: {
+        showNavbar: false,
+        showQRScannerButton: false,
+      },
+    },
     membershipRoutes,
   ],
   meta: {
