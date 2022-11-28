@@ -1,17 +1,32 @@
 <script setup>
 import PopupModal from "../../components/PopupModal.vue";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import BaseLayout from "../../layouts/BaseLayout.vue";
+import { useLoadingStore } from "../../stores/loading";
+import { useRewardsStore } from "../../stores/rewards";
+import { useRoute } from "vue-router";
 
-const reward = {
-  name: "1 Kali Cuci Gratis",
-  points: 10,
-  img: "https://via.placeholder.com/300",
-  description:
-    "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit tincidunt sapien Nam placerat faucibus commodo urna. ex. non, eget faucibus Ut nisi faucibus faucibus in commodo tincidunt In dignissim, Vestibulum dolor Nam",
-  termsCondition:
-    "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit tincidunt sapien Nam placerat faucibus commodo urna. ex. non, eget faucibus Ut nisi faucibus faucibus in commodo tincidunt In dignissim, Vestibulum dolor Nam",
-};
+const route = useRoute();
+const loadingStore = useLoadingStore();
+const rewardsStore = useRewardsStore();
+
+const reward = computed(() => {
+  if (
+    rewardsStore.rewardDetail === null ||
+    rewardsStore.rewardDetail === undefined
+  ) {
+    return null;
+  }
+
+  return {
+    name: rewardsStore.rewardDetail.name,
+    point: rewardsStore.rewardDetail.point,
+    stamp: rewardsStore.rewardDetail.stamp,
+    img: rewardsStore.rewardDetail.img,
+    description: rewardsStore.rewardDetail.description,
+    termsCondition: rewardsStore.rewardDetail.termsCondition,
+  };
+});
 
 const qty = ref(1);
 const increaseQty = () => {
@@ -24,9 +39,21 @@ const decreaseQty = () => {
   }
 };
 
-const requiredPoints = computed(() => qty.value * reward.points);
+const requiredPoints = computed(() =>
+  reward.value.point ? qty.value * reward.value.point : null
+);
+
+const requiredStamps = computed(() =>
+  reward.value.stamp ? qty.value * reward.value.stamp : null
+);
 
 const modalIsOpen = ref(false);
+
+onMounted(async () => {
+  loadingStore.showLoading();
+  await rewardsStore.fetchRewardDetail(route.params.reward);
+  loadingStore.hideLoading();
+});
 </script>
 
 <template>
@@ -52,7 +79,8 @@ const modalIsOpen = ref(false);
       />
       <div class="px-5 py-2.5">
         <h2 class="font-semibold text-lg">{{ reward.name }}</h2>
-        <h4>{{ reward.points }} Poin</h4>
+        <h4 v-if="reward.point">{{ reward.point }} Poin</h4>
+        <h4 v-if="reward.stamp">{{ reward.stamp }} Stempel</h4>
       </div>
     </div>
 
@@ -121,8 +149,13 @@ const modalIsOpen = ref(false);
       <template #body>
         <p class="p-4">
           Apakah Anda yakin akan menukarkan
-          <span class="font-semibold">{{ requiredPoints }} poin</span> Anda
-          dengan reward
+          <span v-if="requiredPoints" class="font-semibold"
+            >{{ requiredPoints }} poin</span
+          >
+          <span v-if="requiredStamps" class="font-semibold"
+            >{{ requiredStamps }} stempel</span
+          >
+          Anda dengan reward
           <span class="font-semibold">{{ reward.name }} (x{{ qty }})</span> ?
         </p>
       </template>
@@ -145,7 +178,8 @@ const modalIsOpen = ref(false);
     </PopupModal>
 
     <template #bottom-action-bar>
-      <p>{{ qty }} Pcs ({{ requiredPoints }} Poin)</p>
+      <p v-if="requiredPoints">{{ qty }} Pcs ({{ requiredPoints }} Poin)</p>
+      <p v-if="requiredStamps">{{ qty }} Pcs ({{ requiredStamps }} Stempel)</p>
     </template>
   </BaseLayout>
 </template>

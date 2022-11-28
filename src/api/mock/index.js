@@ -67,6 +67,26 @@ const listMembershipRewards = (id) => {
   return fetch({ data: target ? target.rewards : null }, 2000);
 };
 
+const detailReward = (id) => {
+  const rewards = membershipRewards.reduce((acc, reward) => {
+    acc.push(...reward.rewards);
+    return acc;
+  }, []);
+
+  const target = rewards.find((reward) => reward.id == id);
+
+  if (target) {
+    target.description =
+      "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit";
+    target.termsCondition = target.description;
+    target.stock = null;
+    target.startPeriod = null;
+    target.endPeriod = null;
+  }
+
+  return fetch({ data: target });
+};
+
 export default {
   listNearbyBrands,
   listDebitTransactions,
@@ -78,4 +98,5 @@ export default {
   listMemberships,
   detailMembership,
   listMembershipRewards,
+  detailReward,
 };
