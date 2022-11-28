@@ -46,6 +46,11 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: ":membership/join",
+      name: "membership-join",
+      component: () => import("@/views/customer/membership/JoinView.vue"),
+    },
   ],
 };
 

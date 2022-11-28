@@ -26,7 +26,10 @@ const stores = {
 };
 
 const nearbyBrandSlides = computed(() =>
-  stores.nearbyBrands.nearbyBrands.map((brand) => ({ image: brand.img }))
+  stores.nearbyBrands.nearbyBrands.map((brand) => ({
+    image: brand.img,
+    id: brand.id,
+  }))
 );
 
 const pointCards = computed(() =>

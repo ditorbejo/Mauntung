@@ -27,6 +27,11 @@ const listNearbyBrands = () => {
   return fetch(nearbyBrands, 1000);
 };
 
+const detailNearbyBrand = (id) => {
+  const target = nearbyBrands.data.find((brand) => brand.id == id);
+  return fetch({ data: target }, 2000);
+};
+
 const listDebitTransactions = () => {
   return fetch(debitTransactions, 2000);
 };
@@ -114,6 +119,7 @@ const detailReward = (id) => {
 
 export default {
   listNearbyBrands,
+  detailNearbyBrand,
   listDebitTransactions,
   listRecentDebitTransactions,
   listCreditTransactions,

@@ -7,51 +7,56 @@
       "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
       "membership": {
         "id": 1,
-        "name": "Laundree Membership"
+        "name": "Laundree Membership",
+        "img": "https://via.placeholder.com/48x48"
       },
       "isMember": false
     },
     {
       "id": 2,
       "img": "https://via.placeholder.com/300x150",
-      "name": "Laundree",
+      "name": "KopiQue",
       "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
       "membership": {
-        "id": 1,
-        "name": "Laundree Membership"
+        "id": 2,
+        "name": "KopiQue Membership",
+        "img": "https://via.placeholder.com/48x48"
       },
       "isMember": false
     },
     {
       "id": 3,
       "img": "https://via.placeholder.com/300x150",
-      "name": "Laundree",
+      "name": "Supermaret",
       "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
       "membership": {
-        "id": 1,
-        "name": "Laundree Membership"
+        "id": 3,
+        "name": "Supermaret Membership",
+        "img": "https://via.placeholder.com/48x48"
       },
       "isMember": false
     },
     {
       "id": 4,
       "img": "https://via.placeholder.com/300x150",
-      "name": "Laundree",
+      "name": "IceKuki",
       "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
       "membership": {
-        "id": 1,
-        "name": "Laundree Membership"
+        "id": 4,
+        "name": "IceKuki Membership",
+        "img": "https://via.placeholder.com/48x48"
       },
       "isMember": false
     },
     {
       "id": 5,
       "img": "https://via.placeholder.com/300x150",
-      "name": "Laundree",
+      "name": "Bebek Carok",
       "description": "convallis. non, ullamcorper viverra efficitur. lacus tincidunt hendrerit enim. sollicitudin. sollicitudin. ex. enim. non, orci tempor ex nisi at, vitae Sed Ut Nam elit. tincidunt cursus lacus, dolor Ut cursus dolor Nunc nibh vel ipsum placerat. in massa ac convallis. leo. maximus vitae quis non vitae consectetur sit",
       "membership": {
-        "id": 1,
-        "name": "Laundree Membership"
+        "id": 5,
+        "name": "Bebek Carok Membership",
+        "img": "https://via.placeholder.com/48x48"
       },
       "isMember": false
     }
