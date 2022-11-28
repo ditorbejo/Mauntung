@@ -84,7 +84,7 @@ const detailReward = (id) => {
     target.endPeriod = null;
   }
 
-  return fetch({ data: target });
+  return fetch({ data: target }, 2000);
 };
 
 export default {
