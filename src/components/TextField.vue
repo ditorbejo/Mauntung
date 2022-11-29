@@ -10,9 +10,10 @@ const props = defineProps({
   id: String,
   value: [String, Number],
   disabled: Boolean,
+  modelValue: [Object, Number, String],
 });
 
-defineEmits(["change"]);
+defineEmits(["change", "update:modelValue"]);
 
 const formatInputOnFocus = (event) => {
   if (props.typeInput === "number") {
@@ -35,15 +36,15 @@ const formatInputOnBlur = (event) => {
 
 <template>
   <div class="flex flex-col gap-2">
-    <label class="font-medium" for="">{{ label }}</label>
+    <label class="font-medium" :for="id">{{ label }}</label>
     <input
-      @input="(event) => $emit('change', event)"
+      @input="$emit('update:modelValue', $event.target.value)"
       class="flex items-center px-3 py-3 border border-solid rounded-lg border-lightGray"
       :type="typeInput"
       :name="nameInput"
       :placeholder="placeholder"
       :id="id"
-      :value="value"
+      :value="modelValue"
       :disabled="disabled"
       :class="[disabled ? 'bg-lightGray text-gray' : 'text-biru1']"
       @focus="(event) => formatInputOnFocus(event)"

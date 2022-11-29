@@ -55,6 +55,11 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: "membership/create",
+      name: "membership-create",
+      component: () => import("@/views/merchant/membership/CreateView.vue"),
+    },
   ],
   meta: {
     role: "merchant",
