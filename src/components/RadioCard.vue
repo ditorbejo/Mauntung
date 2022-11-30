@@ -1,6 +1,6 @@
 <script setup>
 import { useSlots } from "vue";
-defineProps(["radioItems", "name", "selected"]);
+defineProps(["name", "selected", "id", "value", "label", "description"]);
 defineEmits(["update:selected"]);
 
 const slots = useSlots();
@@ -8,24 +8,22 @@ const slots = useSlots();
 
 <template>
   <label
-    v-for="(item, index) in radioItems"
-    :key="index"
-    :for="item.id"
+    :for="id"
     class="border rounded-lg shadow-cardShadow bg-white"
-    :class="[item.value === selected ? 'border-biru2' : 'border-lightGray']"
+    :class="[value === selected ? 'border-biru2' : 'border-lightGray']"
   >
     <div class="pl-3 py-3 pr-4 flex gap-3 items-center">
       <input
         type="radio"
         :name="name"
-        :id="item.id"
-        :value="item.value"
-        :checked="item.value === selected"
+        :id="id"
+        :value="value"
+        :checked="value === selected"
         @change="$emit('update:selected', $event.target.value)"
         class="opacity-0 fixed w-0"
       />
       <span
-        v-if="item.value === selected"
+        v-if="value === selected"
         class="material-symbols-rounded text-biru2"
       >
         radio_button_checked
@@ -34,12 +32,12 @@ const slots = useSlots();
         radio_button_unchecked
       </span>
       <div>
-        <p class="text-lg font-semibold">{{ item.label }}</p>
-        <p class="text-sm mt-1 text-justify">{{ item.description }}</p>
+        <p class="text-lg font-semibold">{{ label }}</p>
+        <p class="text-sm mt-1 text-justify">{{ description }}</p>
       </div>
     </div>
     <div
-      v-if="slots.footer && item.value === selected"
+      v-if="slots.footer && value === selected"
       class="border-t border-biru1 p-3"
     >
       <slot name="footer"></slot>

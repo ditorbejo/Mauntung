@@ -14,5 +14,6 @@ defineProps({ name: String, img: String, point: Number, stamp: Number });
       <p v-if="point" class="font-medium">{{ point }} Poin</p>
       <p v-if="stamp" class="font-medium">{{ stamp }} Stempel</p>
     </div>
+    <slot name="footer"></slot>
   </div>
 </template>
