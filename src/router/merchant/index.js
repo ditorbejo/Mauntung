@@ -70,6 +70,16 @@ let routes = {
       name: "login",
       component: () => import("@/views/merchant/LoginView.vue"),
     },
+    {
+      path: "scanner",
+      name: "scanner",
+      component: () => import("@/views/merchant/CustomerCodeScannerView.vue"),
+    },
+    {
+      path: "topup-point",
+      name: "topup-point",
+      component: () => import("@/views/merchant/TopupPointView.vue"),
+    },
   ],
   meta: {
     role: "merchant",

@@ -13,7 +13,12 @@ const navigateToGenerateCodeView = () => {
 </script>
 
 <template>
-  <BaseLayout :use-nav-bar="true" :use-fab="true" fab-icon="qr_code_scanner">
+  <BaseLayout
+    :use-nav-bar="true"
+    :use-fab="true"
+    fab-icon="qr_code_scanner"
+    @fab-click="router.push({ name: 'merchant-scanner' })"
+  >
     <div class="px-7.5">
       <h1 class="mt-3 mb-5 font-semibold">Halo, Joomla</h1>
       <div class="flex flex-col gap-3">
