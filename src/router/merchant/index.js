@@ -60,6 +60,16 @@ let routes = {
       name: "membership-create",
       component: () => import("@/views/merchant/membership/CreateView.vue"),
     },
+    {
+      path: "register",
+      name: "register",
+      component: () => import("@/views/merchant/RegisterView.vue"),
+    },
+    {
+      path: "login",
+      name: "login",
+      component: () => import("@/views/merchant/LoginView.vue"),
+    },
   ],
   meta: {
     role: "merchant",

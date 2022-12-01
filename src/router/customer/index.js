@@ -84,6 +84,16 @@ let routes = {
         showQRScannerButton: false,
       },
     },
+    {
+      path: "register",
+      name: "register",
+      component: () => import("@/views/customer/RegisterView.vue"),
+    },
+    {
+      path: "login",
+      name: "login",
+      component: () => import("@/views/customer/LoginView.vue"),
+    },
     membershipRoutes,
   ],
   meta: {
