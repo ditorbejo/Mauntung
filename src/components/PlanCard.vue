@@ -4,7 +4,7 @@ import { ref } from "vue";
 defineProps({
   title: String,
   price: String,
-  features: String,
+  features: Array,
   cta: String,
   extras: Object,
 });
