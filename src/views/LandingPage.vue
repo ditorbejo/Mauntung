@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import PlanCard from "../components/PlanCard.vue";
+import PopupModal from "../components/PopupModal.vue";
 import instagramIcon from "@/assets/icons/instagram.svg";
 import twitterIcon from "@/assets/icons/twitter.svg";
 import facebookIcon from "@/assets/icons/facebook.svg";
@@ -105,10 +106,87 @@ const informations = [
     url: "#",
   },
 ];
+
+const currentModalContent = ref("register");
+const modalIsOpen = ref(false);
 </script>
 
 <template>
   <div>
+    <PopupModal
+      :is-open="modalIsOpen"
+      @modal-close="
+        () => {
+          modalIsOpen = false;
+        }
+      "
+    >
+      <template #header>
+        <div class="flex justify-between p-4 items-center">
+          <p class="font-semibold">
+            {{ currentModalContent === "register" ? "Daftar" : "Masuk" }}
+          </p>
+          <span
+            class="p-2 bg-biru2 text-white rounded-full material-symbols-rounded"
+            data-dismiss="modal"
+          >
+            close
+          </span>
+        </div>
+      </template>
+
+      <template #body>
+        <div
+          v-if="currentModalContent === 'register'"
+          class="p-4 max-w-xs mx-auto"
+        >
+          <img
+            class="w-full aspect-square"
+            src="https://via.placeholder.com/320"
+            alt="register"
+          />
+          <button
+            class="btn btn-primary btn-rounded btn-lg w-full mt-3"
+            @click="$router.push({ name: 'merchant-register' })"
+          >
+            Daftar Sebagai Merchant
+          </button>
+
+          <p class="mt-10 text-center">Anda Bukan Merchant?</p>
+          <button
+            class="btn btn-secondary btn-rounded btn-lg w-full mt-3"
+            @click="$router.push({ name: 'customer-register' })"
+          >
+            Daftar Sebagai Pelanggan
+          </button>
+        </div>
+
+        <div
+          v-else-if="currentModalContent === 'login'"
+          class="p-4 max-w-xs mx-auto"
+        >
+          <img
+            class="w-full aspect-square"
+            src="https://via.placeholder.com/320"
+            alt="login"
+          />
+          <button
+            class="btn btn-primary btn-rounded btn-lg w-full mt-3"
+            @click="$router.push({ name: 'merchant-login' })"
+          >
+            Masuk Sebagai Merchant
+          </button>
+
+          <p class="mt-10 text-center">Anda Bukan Merchant?</p>
+          <button
+            class="btn btn-secondary btn-rounded btn-lg w-full mt-3"
+            @click="$router.push({ name: 'customer-login' })"
+          >
+            Masuk Sebagai Pelanggan
+          </button>
+        </div>
+      </template>
+    </PopupModal>
     <header class="fixed top-0 left-0 right-0 z-30">
       <div
         class="flex items-center justify-between px-4 h-16 shadow-topBarShadow bg-white z-40"
@@ -135,11 +213,23 @@ const informations = [
         <div class="hidden sm:block">
           <button
             class="text-center w-full sm:w-auto btn btn-secondary btn-base btn-rounded px-8 mr-3"
+            @click="
+              () => {
+                currentModalContent = 'login';
+                modalIsOpen = true;
+              }
+            "
           >
             Masuk
           </button>
           <button
             class="text-center w-full sm:w-auto btn btn-primary btn-base btn-rounded px-8"
+            @click="
+              () => {
+                currentModalContent = 'register';
+                modalIsOpen = true;
+              }
+            "
           >
             Daftar
           </button>
@@ -165,11 +255,23 @@ const informations = [
         <div class="px-4">
           <button
             class="text-center w-full btn btn-secondary btn-lg btn-rounded"
+            @click="
+              () => {
+                currentModalContent = 'login';
+                modalIsOpen = true;
+              }
+            "
           >
             Masuk
           </button>
           <button
             class="text-center w-full btn btn-primary btn-lg btn-rounded mt-4"
+            @click="
+              () => {
+                currentModalContent = 'register';
+                modalIsOpen = true;
+              }
+            "
           >
             Daftar
           </button>
@@ -194,6 +296,12 @@ const informations = [
           </p>
           <button
             class="text-center w-full sm:w-auto btn btn-primary btn-lg btn-rounded mt-4"
+            @click="
+              () => {
+                currentModalContent = 'register';
+                modalIsOpen = true;
+              }
+            "
           >
             Mulai Sekarang - Gratis
           </button>
@@ -239,6 +347,7 @@ const informations = [
             v-for="(plan, index) in plans"
             :key="'plan-' + index"
             v-bind="plan"
+            @cta-click="$router.push({ name: 'merchant-register' })"
           />
         </div>
       </section>

@@ -9,6 +9,8 @@ defineProps({
   extras: Object,
 });
 
+defineEmits(["ctaClick"]);
+
 const isMonthly = ref(false);
 </script>
 
@@ -62,7 +64,10 @@ const isMonthly = ref(false);
         ></li>
       </ul>
     </div>
-    <button class="text-center w-full btn btn-primary btn-lg btn-rounded mt-9">
+    <button
+      class="text-center w-full btn btn-primary btn-lg btn-rounded mt-9"
+      @click="$emit('ctaClick')"
+    >
       {{ cta }}
     </button>
   </div>
