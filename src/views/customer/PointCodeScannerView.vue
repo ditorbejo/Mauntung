@@ -61,6 +61,11 @@ const onInit = async (promise) => {
     :use-app-bar="true"
     app-bar-icon="arrow_back"
     title="Pindai Kode Poin"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div class="relative w-full aspect-square -mt-5">
       <QrcodeStream @decode="onDecode" @init="onInit" />

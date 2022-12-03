@@ -19,6 +19,11 @@ const register = () => {
     :use-app-bar="true"
     app-bar-icon="arrow_back"
     title="Daftar Sebagai Pelanggan"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div class="px-7.5">
       <div class="flex flex-col gap-3">

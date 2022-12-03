@@ -146,6 +146,11 @@ const infoCardOnClick = (details) => {
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Laporan"
+    @app-bar-button-click="
+      $router.push({
+        name: 'merchant-home',
+      })
+    "
   >
     <PopupModal
       :isOpen="isOpen"

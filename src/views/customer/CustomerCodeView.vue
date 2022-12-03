@@ -11,6 +11,11 @@ const customerCode = "abc-123-abc-123";
     :use-app-bar="true"
     app-bar-icon="arrow_back"
     title="Kode Pelanggan"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-scanner',
+      })
+    "
   >
     <div class="px-7.5">
       <h2 class="font-medium text-center">

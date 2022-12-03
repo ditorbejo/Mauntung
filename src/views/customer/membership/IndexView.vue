@@ -34,6 +34,11 @@ onMounted(async () => {
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Daftar Membership"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div class="px-7.5">
       <TextField placeholder="Cari merchant/brand..." type-input="text" />

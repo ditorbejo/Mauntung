@@ -27,7 +27,16 @@ const topup = () => {
 </script>
 
 <template>
-  <BaseLayout :use-app-bar="true" app-bar-icon="arrow_back" title="Tambah Poin">
+  <BaseLayout
+    :use-app-bar="true"
+    app-bar-icon="arrow_back"
+    title="Tambah Poin"
+    @app-bar-button-click="
+      $router.push({
+        name: 'merchant-scanner',
+      })
+    "
+  >
     <div class="px-7.5">
       <TextField
         label="Nominal Transaksi"

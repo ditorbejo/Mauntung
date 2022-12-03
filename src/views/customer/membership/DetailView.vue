@@ -139,6 +139,11 @@ onMounted(async () => {
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Detail Membership"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div v-if="!loadingStore.isLoading && !membershipNotFound">
       <section class="mx-7.5">

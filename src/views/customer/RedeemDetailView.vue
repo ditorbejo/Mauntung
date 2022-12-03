@@ -50,6 +50,7 @@ onMounted(async () => {
     <div class="relative shadow-cardShadow -mt-5">
       <button
         class="absolute flex items-center bg-biru2 rounded-full py-2.5 px-2.5 top-4 left-4 z-30"
+        @click="$router.back()"
       >
         <span
           class="material-symbols-rounded text-white text-base leading-none"

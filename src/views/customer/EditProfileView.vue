@@ -6,7 +6,16 @@ import BaseLayout from "../../layouts/BaseLayout.vue";
 </script>
 
 <template>
-  <BaseLayout :use-app-bar="true" app-bar-icon="arrow_back" title="Edit Profil">
+  <BaseLayout
+    :use-app-bar="true"
+    app-bar-icon="arrow_back"
+    title="Edit Profil"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-profile',
+      })
+    "
+  >
     <div class="px-7.5">
       <div class="flex flex-col gap-4 items-center mb-8">
         <p class="font-medium">Foto Profil</p>

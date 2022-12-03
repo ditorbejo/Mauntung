@@ -53,6 +53,11 @@ onMounted(async () => {
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Daftar Riwayat"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div>
       <ButtonGroup

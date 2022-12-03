@@ -35,7 +35,16 @@ const claimPoint = () => {
 </script>
 
 <template>
-  <BaseLayout :use-app-bar="true" app-bar-icon="arrow_back" title="Claim Poin">
+  <BaseLayout
+    :use-app-bar="true"
+    app-bar-icon="arrow_back"
+    title="Claim Poin"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-scanner',
+      })
+    "
+  >
     <div v-if="!isClaimed" class="px-7.5">
       <div
         class="p-3 rounded-lg bg-white border border-lightGray shadow-cardShadow flex flex-col gap-3"

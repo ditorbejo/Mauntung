@@ -42,6 +42,11 @@ const menus = [
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Profil"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-home',
+      })
+    "
   >
     <div class="flex gap-2 py-4 items-center shadow-cardShadow -mt-5">
       <div class="px-4 py-5.5">

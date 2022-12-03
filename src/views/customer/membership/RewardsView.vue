@@ -43,6 +43,11 @@ onMounted(async () => {
     :use-nav-bar="true"
     app-bar-icon="arrow_back"
     title="Penukaran"
+    @app-bar-button-click="
+      $router.push({
+        name: 'customer-membership-detail',
+      })
+    "
   >
     <div class="px-7.5" v-if="!loadingStore.isLoading && !membershipNotFound">
       <template v-if="rewards?.length > 0">
