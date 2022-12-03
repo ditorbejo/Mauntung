@@ -32,7 +32,7 @@ const register = () => {
   >
     <div class="px-7.5">
       <div class="flex flex-col gap-3">
-        <ButtonGroup
+        <!-- <ButtonGroup
           left-text="Email"
           right-text="No. HP"
           :active="active"
@@ -48,7 +48,7 @@ const register = () => {
               selectedMethod = 'phone';
             }
           "
-        />
+        /> -->
         <template v-if="selectedMethod === 'email'">
           <TextField
             label="Nama Merchant"

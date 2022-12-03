@@ -5,7 +5,7 @@ import { reactive } from "vue";
 
 const form = reactive({
   fullName: "",
-  phone: "",
+  email: "",
   password: "",
 });
 
@@ -31,12 +31,12 @@ const register = () => {
           v-model="form.name"
         />
         <TextField
-          label="No. HP"
-          placeholder="No. HP"
-          type-input="text"
-          name-input="phone"
-          id="phone"
-          v-model="form.phone"
+          label="Email"
+          placeholder="Email"
+          type-input="email"
+          name-input="email"
+          id="email"
+          v-model="form.email"
         />
         <TextField
           label="Password"
