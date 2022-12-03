@@ -315,7 +315,7 @@ const currentTier = reactive({
   isBase: false,
 });
 
-const tierIdCounter = ref(2);
+const tierIdCounter = ref(3);
 
 const makeDefaultTiers = () => [
   {
