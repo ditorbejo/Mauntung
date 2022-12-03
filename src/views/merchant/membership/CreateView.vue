@@ -553,7 +553,12 @@ watch(
 
         <button
           v-if="form.type === 'stamp'"
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          :disabled="form.name == null || form.name == ''"
+          class="btn btn-rounded btn-lg w-full mt-12"
+          :class="{
+            'btn-disabled': form.name == null || form.name == '',
+            'btn-primary': !(form.name == null || form.name == ''),
+          }"
           @click="() => navigateToSection(sections.stamp.stampRules)"
         >
           Selanjutnya
@@ -561,7 +566,12 @@ watch(
 
         <button
           v-else-if="form.type === 'point'"
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          :disabled="form.name == null || form.name == ''"
+          class="btn btn-rounded btn-lg w-full mt-12"
+          :class="{
+            'btn-disabled': form.name == null || form.name == '',
+            'btn-primary': !(form.name == null || form.name == ''),
+          }"
           @click="() => navigateToSection(sections.point.pointRules)"
         >
           Selanjutnya
@@ -599,8 +609,33 @@ watch(
         </div>
 
         <button
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          class="btn btn-rounded btn-lg w-full mt-12"
+          :disabled="
+            form.rules.stampTtl == null ||
+            form.rules.stampTtl == 0 ||
+            form.rules.redeemTtl == null ||
+            form.rules.redeemTtl == 0 ||
+            form.rules.cardCapacity == null ||
+            form.rules.cardCapacity == 0
+          "
           @click="() => navigateToSection(sections.stamp.rewardsList)"
+          :class="{
+            'btn-disabled':
+              form.rules.stampTtl == null ||
+              form.rules.stampTtl == 0 ||
+              form.rules.redeemTtl == null ||
+              form.rules.redeemTtl == 0 ||
+              form.rules.cardCapacity == null ||
+              form.rules.cardCapacity == 0,
+            'btn-primary': !(
+              form.rules.stampTtl == null ||
+              form.rules.stampTtl == 0 ||
+              form.rules.redeemTtl == null ||
+              form.rules.redeemTtl == 0 ||
+              form.rules.cardCapacity == null ||
+              form.rules.cardCapacity == 0
+            ),
+          }"
         >
           Selanjutnya
         </button>
@@ -684,7 +719,7 @@ watch(
                 <TextField
                   label="Poin"
                   placeholder="Poin"
-                  type-input="text"
+                  type-input="number"
                   name-input="nominalPoint"
                   id="nominalPoint"
                   v-model.number="pointGeneration.nominal.points"
@@ -692,7 +727,7 @@ watch(
                 <TextField
                   label="Per Nominal"
                   placeholder="Per Nominal"
-                  type-input="text"
+                  type-input="number"
                   name-input="nominalDivider"
                   id="nominalDivider"
                   v-model.number="pointGeneration.nominal.divider"
@@ -706,7 +741,7 @@ watch(
                 <TextField
                   label="Poin"
                   placeholder="Poin"
-                  type-input="text"
+                  type-input="number"
                   name-input="itemPoint"
                   id="itemPoint"
                   v-model.number="pointGeneration.item.points"
@@ -714,7 +749,7 @@ watch(
                 <TextField
                   label="Per Item"
                   placeholder="Per Item"
-                  type-input="text"
+                  type-input="number"
                   name-input="nominalDivider"
                   id="nominalDivider"
                   v-model.number="pointGeneration.item.divider"
@@ -724,7 +759,7 @@ watch(
                 v-else-if="item.value === 'fixed'"
                 label="Poin"
                 placeholder="Poin"
-                type-input="text"
+                type-input="number"
                 name-input="fixedPoint"
                 id="fixedPoint"
                 v-model.number="pointGeneration.fixed.points"
@@ -734,7 +769,69 @@ watch(
         </div>
 
         <button
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          class="btn btn-rounded btn-lg w-full mt-12"
+          :class="{
+            'btn-disabled':
+              form.rules.pointTtl == 0 ||
+              form.rules.pointTtl == null ||
+              form.rules.redeemTtl == 0 ||
+              form.rules.redeemTtl == null ||
+              pointGeneration.nominal.points == 0 ||
+              pointGeneration.nominal.points == null ||
+              pointGeneration.nominal.divider == 0 ||
+              pointGeneration.nominal.divider == null ||
+              pointGeneration.item.points == 0 ||
+              pointGeneration.item.points == null ||
+              pointGeneration.item.divider == 0 ||
+              pointGeneration.item.divider == null ||
+              pointGeneration.fixed.points == 0 ||
+              pointGeneration.fixed.points == null ||
+              (form.rules.distributionMethod == 'generate'
+                ? form.rules.rewardClaimsMethod.app == false &&
+                  form.rules.rewardClaimsMethod.scan == false
+                : false),
+
+            'btn-primary': !(
+              form.rules.pointTtl == 0 ||
+              form.rules.pointTtl == null ||
+              form.rules.redeemTtl == 0 ||
+              form.rules.redeemTtl == null ||
+              pointGeneration.nominal.points == 0 ||
+              pointGeneration.nominal.points == null ||
+              pointGeneration.nominal.divider == 0 ||
+              pointGeneration.nominal.divider == null ||
+              pointGeneration.item.points == 0 ||
+              pointGeneration.item.points == null ||
+              pointGeneration.item.divider == 0 ||
+              pointGeneration.item.divider == null ||
+              pointGeneration.fixed.points == 0 ||
+              pointGeneration.fixed.points == null ||
+              (form.rules.distributionMethod == 'generate'
+                ? form.rules.rewardClaimsMethod.app == false &&
+                  form.rules.rewardClaimsMethod.scan == false
+                : false)
+            ),
+          }"
+          :disabled="
+            form.rules.pointTtl == 0 ||
+            form.rules.pointTtl == null ||
+            form.rules.redeemTtl == 0 ||
+            form.rules.redeemTtl == null ||
+            pointGeneration.nominal.points == 0 ||
+            pointGeneration.nominal.points == null ||
+            pointGeneration.nominal.divider == 0 ||
+            pointGeneration.nominal.divider == null ||
+            pointGeneration.item.points == 0 ||
+            pointGeneration.item.points == null ||
+            pointGeneration.item.divider == 0 ||
+            pointGeneration.item.divider == null ||
+            pointGeneration.fixed.points == 0 ||
+            pointGeneration.fixed.points == null ||
+            (form.rules.distributionMethod == 'generate'
+              ? form.rules.rewardClaimsMethod.app == false &&
+                form.rules.rewardClaimsMethod.scan == false
+              : false)
+          "
           @click="
             () => {
               const { type } = pointGeneration;
@@ -787,16 +884,26 @@ watch(
 
         <button
           v-if="currentSection === sections.stamp.rewardsList"
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          class="btn btn-rounded btn-lg w-full mt-12"
           @click="() => navigateToSection(sections.stamp.stampReview)"
+          :disabled="form.rewards.length == 0"
+          :class="{
+            'btn-disabled': form.rewards.length == 0,
+            'btn-primary': !(form.rewards.length == 0),
+          }"
         >
           Selanjutnya
         </button>
 
         <button
           v-else-if="currentSection === sections.point.rewardsList"
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          class="btn btn-rounded btn-lg w-full mt-12"
           @click="() => navigateToSection(sections.point.tieringChoice)"
+          :disabled="form.rewards.length == 0"
+          :class="{
+            'btn-disabled': form.rewards.length == 0,
+            'btn-primary': !(form.rewards.length == 0),
+          }"
         >
           Selanjutnya
         </button>
@@ -952,7 +1059,7 @@ watch(
           "
         >
           <button
-            class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+            class="btn btn-rounded btn-lg w-full mt-12"
             @click="
               () => {
                 updateReward();
@@ -963,6 +1070,43 @@ watch(
                 }
               }
             "
+            :disabled="
+              currentReward.name == null ||
+              currentReward.name == '' ||
+              currentReward.stamp == null ||
+              currentReward.stamp == 0 ||
+              currentReward.point == null ||
+              currentReward.point == 0 ||
+              currentReward.description == null ||
+              currentReward.description == '' ||
+              currentReward.termsCondition == null ||
+              currentReward.termsCondition == ''
+            "
+            :class="{
+              'btn-disabled':
+                currentReward.name == null ||
+                currentReward.name == '' ||
+                currentReward.stamp == null ||
+                currentReward.stamp == 0 ||
+                currentReward.point == null ||
+                currentReward.point == 0 ||
+                currentReward.description == null ||
+                currentReward.description == '' ||
+                currentReward.termsCondition == null ||
+                currentReward.termsCondition == '',
+              'btn-secondary': !(
+                currentReward.name == null ||
+                currentReward.name == '' ||
+                currentReward.stamp == null ||
+                currentReward.stamp == 0 ||
+                currentReward.point == null ||
+                currentReward.point == 0 ||
+                currentReward.description == null ||
+                currentReward.description == '' ||
+                currentReward.termsCondition == null ||
+                currentReward.termsCondition == ''
+              ),
+            }"
           >
             Simpan
           </button>
@@ -1233,26 +1377,64 @@ watch(
 
         <button
           v-if="currentSection === sections.point.createTier"
-          class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+          class="btn btn-rounded btn-lg w-full mt-12"
           @click="
             () => {
               createTier();
               navigateToSection(sections.point.tiersList);
             }
           "
+          :disabled="
+            currentTier.name == '' ||
+            currentTier.name == null ||
+            currentTier.pointsRequired == null ||
+            currentTier.rewards.length == 0
+          "
+          :class="{
+            'btn-disabled':
+              currentTier.name == '' ||
+              currentTier.name == null ||
+              currentTier.pointsRequired == null ||
+              currentTier.rewards.length == 0,
+            'btn-primary': !(
+              currentTier.name == '' ||
+              currentTier.name == null ||
+              currentTier.pointsRequired == null ||
+              currentTier.rewards.length == 0
+            ),
+          }"
         >
           Simpan
         </button>
 
         <template v-if="currentSection === sections.point.editTier">
           <button
-            class="btn btn-primary btn-rounded btn-lg w-full mt-12"
+            class="btn btn-rounded btn-lg w-full mt-12"
             @click="
               () => {
                 updateTier();
                 navigateToSection(sections.point.tiersList);
               }
             "
+            :disabled="
+              currentTier.name == '' ||
+              currentTier.name == null ||
+              currentTier.pointsRequired == null ||
+              currentTier.rewards.length == 0
+            "
+            :class="{
+              'btn-disabled':
+                currentTier.name == '' ||
+                currentTier.name == null ||
+                currentTier.pointsRequired == null ||
+                currentTier.rewards.length == 0,
+              'btn-primary': !(
+                currentTier.name == '' ||
+                currentTier.name == null ||
+                currentTier.pointsRequired == null ||
+                currentTier.rewards.length == 0
+              ),
+            }"
           >
             Simpan
           </button>
