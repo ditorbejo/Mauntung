@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import TextField from "./TextField.vue";
 import { useBasePointStore } from "@/stores/basePoint";
 
@@ -10,14 +10,14 @@ defineProps({
 
 defineEmits(["generateCodeClick"]);
 
-const basePoint = ref(0);
+const nominal = ref(0);
 const basePointStorage = useBasePointStore();
-const calculateBasePoint = (event) => {
-  const nominal = event.target.value;
-  const calculated = parseInt(nominal / 10000);
-  basePoint.value = calculated < 1 ? 0 : calculated;
-  basePointStorage.setBasePoint(basePoint.value);
-};
+const calculateBasePoint = computed(() => {
+  const calculated = parseInt(nominal.value / 10000);
+  const basePoint = calculated < 1 ? 0 : calculated;
+  basePointStorage.setBasePoint(basePoint);
+  return basePoint;
+});
 </script>
 
 <template>
@@ -25,28 +25,27 @@ const calculateBasePoint = (event) => {
     <h2 class="font-semibold mb-4">Buat Kode Poin</h2>
     <div class="flex flex-col gap-2.5">
       <TextField
-        @change="calculateBasePoint"
         v-if="useNominal"
         :label="topLabel"
         type-input="number"
         name-input="nominal"
         id="nominal"
-        :value="0"
+        v-model="nominal"
       ></TextField>
       <TextField
         label="Poin Dasar"
         type-input="number"
         name-input="poin"
         id="poin"
-        :value="basePoint"
+        :model-value="calculateBasePoint"
         :disabled="true"
       ></TextField>
     </div>
     <button
-      @click="basePoint < 1 ? null : $emit('generateCodeClick')"
+      @click="calculateBasePoint < 1 ? null : $emit('generateCodeClick')"
       class="w-full mt-4 btn btn-rounded btn-base"
-      :class="[basePoint < 1 ? 'btn-disabled' : 'btn-primary']"
-      :disabled="basePoint < 1"
+      :class="[calculateBasePoint < 1 ? 'btn-disabled' : 'btn-primary']"
+      :disabled="calculateBasePoint < 1"
     >
       Buat Kode
     </button>
