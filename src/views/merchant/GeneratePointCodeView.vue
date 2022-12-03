@@ -11,11 +11,7 @@ const basePointStorage = useBasePointStore();
     :use-app-bar="true"
     app-bar-icon="arrow_back"
     title="Buat Kode Poin"
-    @app-bar-button-click="
-      $router.push({
-        name: 'merchant-scanner',
-      })
-    "
+    @app-bar-button-click="$router.back()"
   >
     <div
       class="flex flex-col gap-2.5 px-2.5 py-2.5 mx-7.5 items-center border border-lightGray rounded-lg"
